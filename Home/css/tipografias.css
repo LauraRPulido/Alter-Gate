@@ -1,0 +1,18 @@
+/* Tipografía
+Cuerpo de texto
+Tamaño de fuente: 18px */
+p{
+    /* Fuentes
+    Familia: Syne Mono  / Peso: 600  */
+    font-family: "Syne Mono", serif;
+    font-weight: 400;
+}
+h1,h2,h3,h4,h5,h6{
+    /*Familia: Syne  / Pesos: 700, 900 */
+      font-family: "Syne", serif;
+      font-weight: 600;
+}
+a{
+    font-family: "Syne", serif;
+    font-weight: 500;
+}
