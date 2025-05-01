@@ -6,6 +6,9 @@ p{
     Familia: Syne Mono  / Peso: 600  */
     font-family: "Syne Mono", serif;
     font-weight: 400;
+    @media screen and (width < 992px ){
+        font-size: 0.8rem;
+    }
 }
 h1,h2,h3,h4,h5,h6{
     /*Familia: Syne  / Pesos: 700, 900 */
