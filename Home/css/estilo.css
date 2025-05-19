@@ -911,7 +911,7 @@ section#pagLocales{
     }
 
     .contenedorLoc{
-        border: solid 2px var(--azulElectrico);
+        border: solid 3px var(--azulElectrico);
         border-radius: 22px;
         box-shadow: var(--sombraVertical);
     }
