@@ -91,6 +91,37 @@ header#header{
             }  
         }
     }
+
+    #navResponsive > .navbar-nav{
+
+       
+        
+        border-radius: 10px;
+        box-shadow: var(--sombraNav);
+        gap: 10px;
+        
+        
+        a{
+        
+            border: solid 2px transparent;
+            text-transform: uppercase;
+            color: var(--azulElectrico);
+            padding: 3px 10px 3px 10px;
+            border-radius: 8px;
+            
+            
+    
+            
+            &:hover{
+                transition: 1s;
+                border: solid 2px var(--azulElectrico);
+            }  
+        }
+
+
+    }
+
+    
     .form-control{
     
         background-color: var(--celeste);
