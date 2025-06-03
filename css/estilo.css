@@ -66,7 +66,28 @@ header#header{
         margin-right: 10px;
     
     }
-    .navbar-nav{
+    .navbar-movil{
+
+        gap: 10px;
+        
+        box-shadow: none;
+        a{
+        
+            border: solid 2px transparent;
+            text-transform: uppercase;
+            color: var(--azulElectrico);
+            padding: 3px 10px 3px 10px;
+            border-radius: 8px;
+            
+            
+            &:hover{
+                transition: 1s;
+                border: solid 2px var(--azulElectrico);
+            }  
+        }
+
+    }
+    .navbar-escritorio{
         background-color: var(--celeste);
         border: solid 2px var(--azulElectrico);
         border-radius: 10px;
@@ -92,65 +113,30 @@ header#header{
         }
     }
 
-    #navResponsive > .navbar-nav{
-
-       
-        
-        border-radius: 10px;
-        box-shadow: var(--sombraNav);
-        gap: 10px;
-        
-        
-        a{
-        
-            border: solid 2px transparent;
-            text-transform: uppercase;
-            color: var(--azulElectrico);
-            padding: 3px 10px 3px 10px;
-            border-radius: 8px;
-            
-            
-    
-            
-            &:hover{
-                transition: 1s;
-                border: solid 2px var(--azulElectrico);
-            }  
-        }
-
-
-    }
-
-    
-    .form-control{
-    
-        background-color: var(--celeste);
-        border: solid 2px var(--azulElectrico);
-        border-radius: 10px;
-        box-shadow: var(--sombraNav);
-        font-family: "Syne Mono", serif;
-        font-weight: 400;
-    
-        
-    }
-    
-    .btn{
-        border-radius: 100px;
-        margin: 0 15px;
-        border: solid 2px var(--azulElectrico);
-        background-color: var(--celeste);
-        box-shadow: var(--sombraNav);
-        i{
-            color: var(--azulElectrico);
-        }
-        
-    }
-    
     .navbar-toggler{
-    
+        font-size: 2rem;
+        color: var(--azulElectrico);
         border: none;
+
+    }
+
+    .navbar-toggler:focus{
+
+        box-shadow: none;
+        outline: 3px solid var(--cyan)
+    }
+
+    .iconoLogin{
+
+        width: 50px;  
+        height: 50px;
+        background-image: url('../img/user.svg');
+        background-size: cover;
+        background-position: center;
+        border: 2px solid var(--azulElectrico);
     
     }
+
 }
 
 
