@@ -15,158 +15,16 @@
     <link rel="stylesheet" href="./css/estilo.css">
 </head>
 <body>
-    <header class="container" id="header">
-
-        <div class="row d-flex d-lg-none m-4">
-
-            <div class="col">
-                <a class="navbar-brand" href="#">
-                    <img class="img-fluid" src="./img/logo altergate.png" alt="">
-                </a>
-            </div>
-        </div>
-        
-        <div class="row d-flex d-lg-none align-items-center">
-
-            <div class="col navMovil">
-                <div class="container">
-                    <div class="row d-flex">
-
-                        <nav class="col navbar">
-            
-                            <div class="container-fluid">
-                
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navResponsive" aria-controls="navResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                                </button>
-                            
-                                <div class="collapse navbar-collapse" id="navResponsive">
-                                    <div class="navbar-nav py-2 px-1">
-                
-                                        <a href="#">Menú</a>
-                                        <a href="#">Noticias</a>
-                                        <a href="">Colecciones</a>
-                                        <a href="#">Diseñadores</a>
-                                        <a href="#">Locales</a>
-                
-                                    </div> 
-                    
-                                </div>
-                
-                            </div>
-                        
-                        </nav>
-                    
-                    
-                        <div class="col-2">
-                            <form class="d-flex">
-                                <div class="input-group d-none d-lg-flex">
-                                    <input class="form-control" type="buscador" placeholder="Escribe aquí" aria-label="buscador">
-
-                                </div>
-                                <button class="btn" type="submit">
-                                    <i class="bi bi-search"></i>
-                                </button>
-                            </form>
-                        </div>
-                        
-                        <div class="col">
-                            <a href=""><i class="bi bi-person-circle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
     
-        </div>
-
-        <!-- Menú escritorio -->
-        <div class="row d-flex align-items-center justify-content-between">
-   
-            <nav class="col navbar navbar-expand-lg d-none d-lg-flex">
-                
-                <div class="container-fluid">
-        
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navResponsive" aria-controls="navResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <div class="collapse navbar-collapse" id="navResponsive">
-                        <div class="navbar-nav py-2 px-1">
-        
-                        <a href="#">Menú</a>
-                        <a href="#">Noticias</a>
-                        <a href="">Colecciones</a>
-                        <a href="#">Diseñadores</a>
-                        <a href="#">Locales</a>
-        
-                        </div> 
-            
-                    </div>
-        
-                </div>
-                
-            </nav>
-
-            <div class="col d-flex d-none d-lg-flex m-auto">
-
-                <a class="navbar-brand" href="#">
-                    <img class="img-fluid" src="./img/logo altergate.png" alt="">
-                </a>
-        
-            </div>
-
-            <div class="col col-md-2 d-none d-lg-flex">
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input class="form-control" type="buscador" placeholder="Escribe aquí" aria-label="buscador">
-                        
-                    </div>
-                    <button class="btn" type="submit">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-            </div>
-        
-            <!-- <div class="col-2">
-                <input type="text" name="buscador">
-                <button class="botonBuscar">Lupa</button>
-            </div> -->
-
-            <nav class="col-2 navbar navbar-expand-lg d-none d-lg-flex">
-                
-                <div class="container-fluid">
-        
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLogin" aria-controls="navLogin" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <div class="collapse navbar-collapse" id="navLogin">
-                        <div class="navbar-nav py-2 px-1">
-        
-                            <a href="#">Login</a>
-                            <a href="#">Registro</a>
-        
-                        </div> 
-            
-                    </div>
-        
-                </div>
-                
-            </nav>
-
-        </div>
-
-    </header>
-    <section id="pagDiseñadores" class="container-fluid">
+    <section id="pagDiseñadores" class="container-fluid ">
         <div class="row">
             <h3 class="tituloGrandNeg">Diseñadores</h3>
         </div>
 
         <div class="row my-4">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-lg-6 d-flex justify-self-center">
                 <div class="container contenedorDis">
-                    <div class="row py-3 d-flex align-items-center">
+                    <div class="row py-3 d-flex align-items-center flex-column flex-md-row flex-lg-column flex-xl-row">
                         <div class="col-auto">
                             <div class="contenedorPerfil">
 
@@ -174,12 +32,12 @@
                             </div>    
                         </div>
 
-                        <div class="col">
+                        <div class="col col-lg-auto col-xl my-3 perfilDis text-center text-md-start text-lg-center text-xl-start">
                             <h4>Emilio Fernández</h4>
-                            <p>Descripción</p>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus doloremque temporibus animi, accusantium dolorum asperiores aut. Error earum excepturi voluptas tempore a! Dolor.</p>
                         </div>
 
-                        <div class="col-2 contadorLikes">
+                        <div class="col-12 col-lg-3 col-xl-2 contadorLikes">
 
                             <h5>120<span><i class="bi bi-heart"></i></span></h5>
 
@@ -190,15 +48,15 @@
                     <div class="row my-3">
                         <div class="container">
                             <div class="row">
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
+                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 columnaItemDis">
+                                    <div class="contenedorImagenItem">
                                         <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
                                     </div>
                                     <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
                 
                                 </div>
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
+                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 columnaItemDis">
+                                    <div class="contenedorImagenItem">
                                         <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
                                     </div>
                                     <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
@@ -220,182 +78,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6">
-                
-                <div class="container contenedorDis">
-                    <div class="row py-3 d-flex align-items-center">
-                        <div class="col-auto">
-                            <div class="contenedorPerfil">
-
-                                <img src="./img/diseñadorEmilio.jpg" alt="" class="imagenCirculo">
-                            </div>    
-                        </div>
-
-                        <div class="col">
-                            <h4>Emilio Fernández</h4>
-                            <p>Descripción</p>
-                        </div>
-
-                        <div class="col-2 contadorLikes">
-
-                            <h5>120<span><i class="bi bi-heart"></i></span></h5>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row my-3">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col sliderPuntos text-center">
-                            <i class="bi bi-circle-fill"></i>
-                            <i class="bi bi-circle"></i>
-                            <i class="bi bi-circle"></i>
-
-
-
-                        </div>
-                    </div>
-                </div>
+            
 
             </div>
         </div>
 
-        <div class="row my-4">
-            <div class="col-12 col-md-6">
-                <div class="container contenedorDis">
-                    <div class="row py-3 d-flex align-items-center">
-                        <div class="col-auto">
-                            <div class="contenedorPerfil">
-
-                                <img src="./img/diseñadorEmilio.jpg" alt="" class="imagenCirculo">
-                            </div>    
-                        </div>
-
-                        <div class="col">
-                            <h4>Emilio Fernández</h4>
-                            <p>Descripción</p>
-                        </div>
-
-                        <div class="col-2 contadorLikes">
-
-                            <h5>120<span><i class="bi bi-heart"></i></span></h5>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row my-3">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col sliderPuntos text-center">
-                            <i class="bi bi-circle-fill"></i>
-                            <i class="bi bi-circle"></i>
-                            <i class="bi bi-circle"></i>
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-6">
-                
-                <div class="container contenedorDis">
-                    <div class="row py-3 d-flex align-items-center">
-                        <div class="col-auto">
-                            <div class="contenedorPerfil">
-
-                                <img src="./img/diseñadorEmilio.jpg" alt="" class="imagenCirculo">
-                            </div>    
-                        </div>
-
-                        <div class="col">
-                            <h4>Emilio Fernández</h4>
-                            <p>Descripción</p>
-                        </div>
-
-                        <div class="col-2 contadorLikes">
-
-                            <h5>120<span><i class="bi bi-heart"></i></span></h5>
-
-
-                        </div>
-                    </div>
-
-                    <div class="row my-3">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                                <div class="col-12 col-md-6 columnaItemDis">
-                                    <div class="contenedorImagenItemDis">
-                                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                                    </div>
-                                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col sliderPuntos text-center">
-                            <i class="bi bi-circle-fill"></i>
-                            <i class="bi bi-circle"></i>
-                            <i class="bi bi-circle"></i>
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        
 
     </section>
     <footer id="footer" class="container-fluid py-5">
