@@ -661,6 +661,12 @@ section#statement{
         padding: 20px;
         text-transform: uppercase;
         text-align: center;
+
+        @media screen and (width < 892px) {
+
+            font-size: 0.7rem;
+        
+        }
         
     }
     
