@@ -13,7 +13,7 @@
 
 /* Acento */
     --rosaClaro: #FF8599;
-    --rosa: #EA405B;
+    --rosa: #ea405c;
     --rojoOscuro: #6B101F;
 
 /* Gradientes */
@@ -32,5 +32,6 @@
 
 /* Colores con transparencia */
     --azulOscuroTrans: rgba(39, 9, 131, 0.8);
+    --rosaTrans: #ea405c88;
 
 }

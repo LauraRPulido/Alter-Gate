@@ -128,9 +128,9 @@ header#header{
 
     .iconoLogin{
 
-        width: 50px;  
-        height: 50px;
-        background-image: url('../img/user.svg');
+        width: 45px;  
+        height: 45px;
+        object-fit: cover;
         background-size: cover;
         background-position: center;
         border: 2px solid var(--azulElectrico);
@@ -189,7 +189,6 @@ section#banner{
     
 }
 
-
 .cartaEstilosDesk {
 
     display: none;
@@ -222,7 +221,6 @@ section#banner{
     display: block;
 
 }
-
 
 .cartaEstilosMov {
 
@@ -468,45 +466,21 @@ section#banner{
     border-radius: 35px;
 }
 
-@media screen and (width < 992px) {
-    #footer {
-        min-height: 40vh; 
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #footer .container {
-        flex: 1; 
-        display: flex;
-        flex-direction: column;
-    }
-    
-    #footer .row {
-        margin-top: auto;
-        margin-bottom: auto; 
-    }
-    
-    .formFooter {
-        width: 80vw; 
-        max-width: 100%; 
-    }
-    
-}
 
+/* FOOTER */
 footer#footer{
 
     background-color: var(--negro);
     color: var(--cyan);
+    max-width: 100%;
+
     .logoFooter{
         
         font-size: 2.5rem;
         font-weight: 600;
     }
     .formFooter{
-    
-    
-    
-        width: 25vw;
+        width: 100%;
         background-color: var(--negro);
         border: solid 2px var(--cyan);
         border-radius: 10px;
@@ -522,6 +496,13 @@ footer#footer{
     .formFooter::placeholder{
         color: var(--cyan);
     }
+
+    .formFooter:focus{
+
+        outline: none
+
+    }
+
     .botonForm{
         background-color: transparent;
         color: var(--cyan);
@@ -540,11 +521,53 @@ footer#footer{
         border-radius: 10px;
         box-shadow: var(--sombraCyan);
     }
+
+    .form-check-input:focus{
+
+        border-color: var(--rosa); /* Rojo como ejemplo */
+        box-shadow: 0 0 0 0.25rem var(--rosaTrans); /* Sombra roja */
+
+    }
+
+    .form-check-input:checked{
+
+        background-color: var(--rosa); /* Rojo como ejemplo */
+        border-color: var(--rosa);
+
+    }
+
     .social-icon{
         color: var(--cyan);
         font-size: 2rem;
         margin: 1vh;
     }
+}
+/* FOOTER RESPONSIVE */
+@media screen and (width < 992px) {
+    #footer {
+        min-height: 40vh; 
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #footer .container {
+        flex: 1; 
+        display: flex;
+        flex-direction: column;
+       align-content: center;
+    }
+    
+    #footer .row {
+        margin-top: auto;
+        margin-bottom: auto; 
+    }
+    
+    .formFooter{
+
+        min-width: 100%;
+
+    }
+    
 }
 
 section#statement{
