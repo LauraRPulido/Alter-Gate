@@ -496,41 +496,58 @@ section#banner{
 
 .cartaDiseñadores{
 
-    height: 80vh;
+    height: 100%;
+    
 
     @media screen and (width < 992px) {
 
-    height: 50%;
+        height: 50%;
         
     }
 
 }
 
-.cartaDiseñadoresDesk{
-
-    height: 80%;
-
-}
-
 .diseñador{
+    
     padding-top: 30px;
+    padding-bottom: 30px;
     margin-left: 20px;
     margin-right: 20px;
     border: solid 2px var(--azulElectrico);
     box-shadow: var(--sombraNav);
     border-radius: 35px;
 
+    h3{
+        font-size: 1.3rem;
+    }
+
 }
 
-.diseñadorMov {
-    padding-top: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border: solid 2px var(--azulElectrico);
-    box-shadow: var(--sombraNav);
-    border-radius: 35px;
+.infoDis{
+    height: 250px;
+    p{
+        font-size: 1.1rem;
+
+         @media screen and (width < 892px) {
+
+            font-size: 0.8rem;
+        
+        }
+    }
 }
 
+.likesDis{
+    
+        font-family:"Syne", serif;
+        font-size: 1.6rem;
+
+         @media screen and (width < 892px) {
+
+            font-size: 1.3rem;
+        
+        }
+    
+}
 
 /* FOOTER */
 footer#footer{
@@ -639,9 +656,12 @@ section#statement{
     p{
         font-family: "Syne", serif;
         font-weight: 700;
-        line-height: 150%;
+        font-size: large;
+        line-height: 170%;
         padding: 20px;
         text-transform: uppercase;
+        text-align: center;
+        
     }
     
 }
