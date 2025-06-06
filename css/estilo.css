@@ -846,6 +846,13 @@ section#recientes{
         border-radius: 40px;
         border: solid 3px var(--azulElectrico);
         box-shadow: var(--sombraVertical);
+
+        @media screen and (width < 992px) {
+            padding: 1.4rem;
+           
+        }
+
+        
     }
 
     .textoNoticia{
@@ -874,6 +881,24 @@ section#recientes{
             border-radius: 8px;
             box-shadow: var(--sombraNav);
 
+        }
+
+        @media screen and (width < 992px) {
+            
+
+            h3{
+                font-size: 1.6rem;
+                margin: 0;
+            }
+            h4{
+                font-size: 1.1rem;
+            }
+
+            p{
+            font-size: 1rem;
+            font-weight: 500;
+            }
+           
         }
     }
 
