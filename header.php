@@ -18,7 +18,7 @@
 
 <body>
 
-    <header class="container" id="header">
+    <header class="container-fluid" id="header">
 
         <div class="row d-flex justify-content-center d-lg-none m-4">
 
