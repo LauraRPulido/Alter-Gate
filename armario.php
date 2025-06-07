@@ -1,3 +1,15 @@
+<?php
+
+require_once("./conexion.php");
+
+$consulta = ("SELECT * FROM articulos_tb");
+
+$sentencia = $gbd ->query($consulta);
+
+$resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+ 
+?>
+
 <?php include_once("./header.php");?>
     
     
@@ -42,64 +54,17 @@
         </div>
         <div class="container-fluid">
             <div class="row mt-5">
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
+                <?php foreach($resultados as $fila){ ?>
+                    <div class="col-12 col-lg-4 col-xl-3 columnaItem jus
+                    tify-content-center d-flex flex-column align-items-center">
+                        <div class="contenedorImagenItem">
+                            <img src="./img/imgArticulos/<?= $fila['img_art']?>" alt="">
+                        </div>
+                        <p><?= $fila['nombre_art']?></p>
 
-                </div>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
                     </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-            </div>
-            <div class="row ">
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-12 col-md-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
+                <?php } ?>
+                
             </div>
         </div>
     </section>

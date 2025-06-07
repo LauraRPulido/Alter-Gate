@@ -1,6 +1,6 @@
 <?php include_once("./header.php");?>
     
- <section id="bannerDis">
+  <section id="bannerDis">
 
         <div class="container-fluid d-flex justify-content-center px-4">
            
@@ -78,8 +78,8 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-evenly">
-                  <a class="btn botonEditar"><p>Editar</p></a>
-                  <a class="btn botonEliminar"><p>Eliminar</p></a>
+                  <a href="" onclick ="borrado()" class="btn botonEditar"><p>Editar</p></a>
+                  <a href="" onclick ="borrado()" class="btn botonEliminar"><p>Eliminar</p></a>
                 </div>
               </div>
             </div>
@@ -186,5 +186,15 @@
       </div>
     </div>
   </section>
+
+<script>
+  	function borrado(idBorrado){
+			let ok = confirm("¿Estás seguro de borrar este registro?" + idBorrado);
+
+			if(ok){
+				window.location = "deleteEntrada.php?id_entrada=" + idBorrado;
+			}
+		}
+</script>
   
 <?php include_once("./footer.php");?>

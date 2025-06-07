@@ -1724,7 +1724,95 @@ button.accordion-button::after{
     }
 }
 
+/* PAGINA ARTICULO */
 
+section#producto{
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+    h4{
+        font-size: 1.6rem;
+
+        @media screen and (width < 992px) {
+            font-size: 1.1rem;
+            text-align: center;
+        }
+    }
+
+    p{
+        font-size: 1.2rem;
+
+        @media screen and (width < 992px) {
+            font-size: 0.8rem;
+        }
+    }
+}
+
+.tarjetaDiseñadorArt{
+
+    text-align: right;
+    display: flex;
+    align-items: center;
+    padding: 0.6rem ;
+    border: solid 2px var(--azulElectrico);
+    box-shadow: var(--sombraFinaAzul);
+    border-radius: 1.4rem;
+    
+
+    .imgContenedor{
+        display: inline-flex;
+        width: 8vw;
+        height: 8vw;
+        padding: 0.6vw;
+        margin: 0;
+
+        @media screen and (width < 1200px) {
+            width: 9vh;
+            height: 9vh;
+            
+        
+        }
+       
+    }
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: solid 2px var(--azulElectrico);
+        border-radius: 50%;
+    }
+
+   
+
+    h4{
+        font-size:1.6rem;
+        
+    }
+
+    a{
+        margin:1rem 0;
+        font-size: 1rem;
+        display: inline-block;
+        color: var(--azulElectrico);
+        font-family: "Syne Mono", serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+    
+    }
+
+    @media screen and (width < 1200px) {
+            h4{
+                font-size: 1.1rem;
+            }
+
+            a{
+                transform: scale(0.8);
+            }
+            
+        
+    }
+
+}
 
 
 
