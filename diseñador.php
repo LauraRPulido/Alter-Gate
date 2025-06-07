@@ -1,3 +1,20 @@
+<?php 
+require_once("./conexion.php");
+// Obtener la id del diseñador por GET
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$diseñador = null;
+$articulos = [];
+if ($id > 0) {
+    // Consulta para obtener la información del diseñador
+    $stmt = $gbd->prepare("SELECT * FROM users_tb WHERE id = ? LIMIT 1");
+    $stmt->execute([$id]);
+    $diseñador = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Consulta para obtener los artículos de ese diseñador
+    $stmt2 = $gbd->prepare("SELECT * FROM articulos_tb WHERE id_user = ?");
+    $stmt2->execute([$id]);
+    $articulos = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+}
+?>
 <?php include_once("./header.php");?>
 
     <section id="bannerDis">
@@ -9,31 +26,34 @@
                             <div class="col-auto">
                                 <div class="contenedorPerfil">
 
-                                    <img src="./img/diseñadorEmilio.jpg" alt="" class="imagenCirculo">
+                                    <img src="./img/<?= htmlspecialchars($diseñador['imgUser'] ?? 'diseñadorEmilio.jpg') ?>" alt="" class="imagenCirculo">
                                 </div>    
                             </div>
 
                             <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
-                                <h4>Emilio Fernández</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus doloremque temporibus animi, accusantium dolorum asperiores aut. Error earum excepturi voluptas tempore a! Dolor.</p>
+                                <h4><?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?></h4>
+                                <p><?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?></p>
+                                <?php if (!empty($diseñador['enlace'])): ?>
+                                    <a href="<?= htmlspecialchars($diseñador['enlace']) ?>" target="_blank" class="btn btn-outline-dark my-2">Ir al sitio del diseñador</a>
+                                <?php endif; ?>
                             </div>
 
                             <div class="d-flex col-12 col-xl-auto text-center text-xl-start justify-content-center gap-3">
                                 <div class="contContadores">
                                     <p>Me gusta</p>
-                                    <h5>120<span></h5>
+                                    <h5><?= htmlspecialchars($diseñador['likes'] ?? '0') ?><span></span></h5>
                                     
 
                                 </div>
                                 <div class="contContadores">
                                     <p>Artículos</p>
-                                    <h5>120</h5>
+                                    <h5><?= count($articulos) ?></h5>
                                     
 
                                 </div>
                                 <div class="contContadores">
                                     <p>Colecciones</p>
-                                    <h5>120</h5>
+                                    <h5>0</h5>
 
                                 </div>
 
@@ -61,47 +81,15 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
           <div class="accordion-body container-fluid">
             <div class="row d-flex justify-content-center g-4 m-0 p-0 "> 
-            
-            <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                <div class="coleccionCardDis" style="background-image: url(../img/colecciones/) center center /cover;">
-                    <div class="textoColDis">
-                        <h4>Colección: "Alt Gore"</h4>
+                <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
+                    <div class="coleccionCardDis" style="background-image: url(../img/colecciones/) center center /cover;">
+                        <div class="textoColDis">
+                            <h4>Colección: "Alt Gore"</h4>
+                        </div>
                     </div>
                 </div>
+                
             </div>
-    
-            
-            <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                <div class="coleccionCardDis" style="background: url(./img/colecciones/imagenColAlt.jpg) center center /cover;">
-                    <div class="textoColDis">
-                        <h4>El efecto 2000 de la moda</h4>
-                    </div>
-                </div>
-            </div>
-    
-            
-            <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                <div class="coleccionCardDis"style="background: url(../img/colecciones/) center center /cover;">
-                    <div class="textoColDis">
-                        <h4>Vuelve 'scene'</h4>
-                    </div>
-                </div>
-            </div>
-    
-            
-            <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                <div class="coleccionCardDis"style="background: url(../img/colecciones/imagenColAlt.jpg) center center /cover;">
-                    <div class="textoColDis">
-                        <h4>Colección: "Girlz Have Fun"</h4>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-
-
-             </div> 
-        </div>
           </div>
         </div>
       </div>
@@ -115,32 +103,17 @@
           <div class="accordion-body">
             <div class="container-fluid">
             <div class="row my-5">
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
+                <?php foreach($articulos as $articulo) { ?>
+                <div class="col-6 col-lg-4 col-xl-3 columnaItem mx-auto">
+                    <a href="./articulo.php?id=<?= htmlspecialchars($articulo['id']) ?>" class="d-block">
+                        <div class="contenedorImagenItem">
+                            <img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt="">
+                        </div>
+                    </a>
+                    <p><?= htmlspecialchars($articulo['nombre_art']) ?></p>
                 </div>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
-                    <div class="contenedorImagenItem">
-                        <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-
-                </div>
-
-                
-                
+                <?php } ?>
             </div>
-            
             </div>
           </div>
         </div>

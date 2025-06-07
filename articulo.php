@@ -12,7 +12,6 @@ if(isset ($_GET['id'])){
 
 }
 
-
 ?>
 <?php include_once("./header.php"); ?>
 
@@ -20,12 +19,12 @@ if(isset ($_GET['id'])){
 
         <div class="container-fluid">
             <div class="row justify-content-center align-items-center">
-                <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-center mb-4 mb-md-0">
-                    <div class="contenedorImagenItem">
+                <div class="col-12 col-lg-4 d-flex flex-column align-items-center justify-content-center mb-4 mb-md-0">
+                    <div class="contenedorImagenItemArmario">
                         <img src="./img/imgArticulos/<?= $producto['img_art']?>" class="img-fluid">
                     </div>
                     <div class="botonNov text-center w-50 mt-4">
-                        <a href=""class="btn"><?= $producto['enlace_art']?></a>
+                        <a href="<?= $producto['enlace_art']?>"class="btn">Ir al sitio</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -33,22 +32,23 @@ if(isset ($_GET['id'])){
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-10">
                                 <div class="row justify-content-center">
-                                    <div class="col-12 mt-4 ">
+                                    <div class="col-12 col-sm-8 col-lg-12 mt-4 text
+                                    -center text-lg-start">
                                         <h4 class="mb-4"><?= $producto['nombre_art']?></h4>
-                                        <p style="text-align:justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quaerat obcaecati modi minima alias sint nobis. Sapiente ipsa explicabo temporibus deserunt sint assumenda autem in quas. Atque enim eveniet vero.</p>
+                                        <p><?= $producto['descripcion_art']?></p>
                                     </div>
                                 </div>
                             </div>
                             <div id="selectorEstilo" class="container-fluid px-4 px-lg-5 w-100">
                                 <div class="row d-flex align-items-center justify-content-center mt-5">
-                                    <div class="col-12 col-xl-6 tarjetaDiseñadorArt mx-auto w-100">
+                                    <div class="col-12 col-xl-6 tarjetaDiseñadorArt d-flex justify-content-evenly w-100">
                                         <div class="imgContenedor d-flex justify-content-center">
-                                            <img src="" alt="" class="img-fluid imagenCirculo">
+                                            <img src="./img/<?= $producto['imgUser']?>" alt="" class="img-fluid imagenCirculo">
                                         </div>
-                                        <div class="my-3 px-3 text-center">
-                                            <h4>Emilio Fernández</h4>
+                                        <div class="my-3 px-3 text-center ">
+                                            <h4><?= $producto['username']?></h4>
                                             <div>
-                                                <a class="botonNov">Ver Diseñador</a>
+                                                <a href="./diseñador.php?id=<?=$producto['id_user']?>" class="botonNov">Ver Diseñador</a>
                                             </div>
                                         </div>
                                     </div>

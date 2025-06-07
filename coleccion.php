@@ -1,3 +1,19 @@
+<?php
+
+if(isset ($_GET['id'])){
+    require_once("./conexion.php");
+
+    $id = $_GET['id'];
+    $consulta = "SELECT * FROM colecciones_tb, users_tb WHERE colecciones_tb.id_user = users_tb.id AND colecciones_tb.id = ?";
+    $sentencia = $gbd->prepare($consulta);
+    $sentencia->execute([$id]);
+    
+    $producto = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+}
+
+?>
+
 <?php include_once("./header.php")?>
 
     <section id="bannerColeccion" class=" container-fluid vh-100 position-relative" style="background: url(../img/imagenBanner.jpg) center center /cover ;">

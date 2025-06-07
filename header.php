@@ -24,7 +24,7 @@
 
             <div class="col text-center">
                 <a class="navbar-brand" href="#">
-                    <img class="img-fluid" src="./img/logo altergate.png" alt="">
+                    <img class="" src="./img/logo altergate.png" alt="">
                 </a>
             </div>
         </div>
@@ -57,10 +57,10 @@
                                 <div class="collapse navbar-collapse" id="navResponsive">
                                     <div class="navbar-nav navbar-movil py-2 px-1">
                 
-                                        <a href="armario.html">Menú</a>
-                                        <a href="noticias.html">Noticias</a>
-                                        <a href="colecciones.html">Colecciones</a>
-                                        <a href="diseñadores.html">Diseñadores</a>
+                                        <a href="./armario.php">Menú</a>
+                                        <a href="./noticias.php">Noticias</a>
+                                        <a href="./colecciones.php">Colecciones</a>
+                                        <a href="./diseñadores.html">Diseñadores</a>
                 
                                     </div> 
                     
@@ -92,10 +92,10 @@
                     <div class="collapse navbar-collapse" id="navResponsive">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
         
-                        <a href="armario.html">Menú</a>
-                        <a href="noticias.html">Noticias</a>
-                        <a href="colecciones.html">Colecciones</a>
-                        <a href="diseñadores.html">Diseñadores</a>
+                        <a href="armario.php">Menú</a>
+                        <a href="noticias.php">Noticias</a>
+                        <a href="colecciones.php">Colecciones</a>
+                        <a href="diseñadores.php">Diseñadores</a>
         
                         </div> 
             
@@ -121,7 +121,7 @@
                     <div class="collapse navbar-collapse d-flex justify-content-end" id="navLogin">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
         
-                            <a href="#">Login / Registro</a>
+                            <a href="#">Login</a>
                             
                         </div> 
             

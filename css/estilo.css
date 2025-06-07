@@ -604,14 +604,14 @@ footer#footer{
 
     .form-check-input:focus{
 
-        border-color: var(--rosa); /* Rojo como ejemplo */
-        box-shadow: 0 0 0 0.25rem var(--rosaTrans); /* Sombra roja */
+        border-color: var(--rosa);
+        box-shadow: 0 0 0 0.25rem var(--rosaTrans); 
 
     }
 
     .form-check-input:checked{
 
-        background-color: var(--rosa); /* Rojo como ejemplo */
+        background-color: var(--rosa);
         border-color: var(--rosa);
 
     }
@@ -795,8 +795,8 @@ section#items{
 
     @media screen and (width < 490px) {
         
-            width: 170px ;
-            height: 170px ;
+            width: 170px;
+            height: 170px;
 
 
     }
@@ -808,7 +808,8 @@ section#items{
 
 
     }
-    
+
+  
 
     img{
         width: 100%;
@@ -820,6 +821,54 @@ section#items{
 
 
 }
+
+.contenedorImagenItemArmario{
+    
+    width: 300px;
+    height: 300px;
+    padding: 0;
+    box-shadow: var(--sombraItem);
+    border-radius: 30px;
+    text-align: center;
+
+    @media screen and (width < 790px) {
+        
+            width: 225px ;
+            height: 225px ;
+
+
+    }
+
+    @media screen and (width < 490px) {
+        
+            width: 270px;
+            height: 270px;
+
+
+    }
+
+    @media screen and (width < 400px) {
+        
+            width: 225px ;
+            height: 225px ;
+
+
+    }
+
+  
+
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 30px;
+        
+    }
+
+
+}
+
+
 
 .selectorEstilo{
 
@@ -836,6 +885,10 @@ section#items{
         display: inline-flex;
         width: 5vw;
         height: 5vw;
+        min-width: 50px;
+        min-height: 50px;
+        max-width: 90px;
+        max-height: 90px;
         padding: 0;
 
         @media screen and (width < 992px) {
@@ -852,7 +905,16 @@ section#items{
         object-fit: cover;
         border: solid 2px var(--azulElectrico);
         border-radius: 50%;
+        aspect-ratio: 1/1;
+        display: block;
     }
+}
+
+.selectorEstilo .contenedorEstilo img {
+    box-shadow: var(--sombraVertical);
+}
+.selectorEstilo .contenedorEstilo.active img {
+    box-shadow: none;
 }
 
 /* PÁGINA NOTICIAS */
@@ -1727,8 +1789,18 @@ button.accordion-button::after{
 /* PAGINA ARTICULO */
 
 section#producto{
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+
+    @media screen and (width < 800px) {
+           padding-top: 40vw;
+            padding-bottom: 40vw; 
+    }
+
+    @media screen and (width < 800px) {
+           padding-top: 50vw;
+            padding-bottom: 50vw; 
+    }
 
     h4{
         font-size: 1.6rem;
@@ -1753,6 +1825,7 @@ section#producto{
     text-align: right;
     display: flex;
     align-items: center;
+    justify-items: space-between;
     padding: 0.6rem ;
     border: solid 2px var(--azulElectrico);
     box-shadow: var(--sombraFinaAzul);
@@ -1815,34 +1888,127 @@ section#producto{
 }
 
 
+.bannerColecciones {
+    height: 70vh !important;
+    min-height: 70vh !important;
+    max-height: 70vh !important;
+}
+
+/* NOTICIA INDIVIDUAL */
 
 
 
-/* .imgCuadrado{
+.textoNoticiaIndividual {
+    padding: 1rem 1.5rem;
+}
+.textoNoticiaIndividual h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--azulElectrico);
+    margin-bottom: 1rem;
+}
+.textoNoticiaIndividual h4 {
+    font-size: 1.3rem;
+    color: var(--negro);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+.textoNoticiaIndividual p {
+    font-size: 1.1rem;
+    color: var(--negro);
+    margin-bottom: 1.5rem;
+}
+.tarjetaAutorNoticia {
+    display: flex;
+    align-items: center;
+    background: var(--blanco);
+    border: solid 2px var(--azulElectrico);
+    border-radius: 1.2rem;
+    box-shadow: var(--sombraFinaAzul);
+    padding: 0.7rem 1.2rem;
+    gap: 1rem;
+    max-width: 320px;
+}
+.imgContenedorAutor {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: solid 2px var(--azulElectrico);
+    box-shadow: var(--sombraNav);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgContenedorAutor img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: solid 2px var(--azulElectrico);
-    border-radius: 20%;
-    box-shadow: var(--sombraNav);
-    display: block;
-} */
-
-/* .card.overlayAzul{
-    position: relative;
-
-    img{
-        mix-blend-mode: luminosity;
-    }
-    
+    border-radius: 50%;
 }
-.card.overlayAzul::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(61, 174, 235, 0.447);
-    z-index: 1;
-} */
+.infoAutor h5 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--azulElectrico);
+}
+.autorRol {
+    font-size: 0.95rem;
+    color: var(--negro);
+    font-family: "Syne Mono", serif;
+}
+@media (max-width: 992px) {
+    .noticiaCardIndividual {
+        padding: 1.2rem 0.5rem;
+    }
+    .textoNoticiaIndividual {
+        padding: 0.5rem 0.2rem;
+    }
+    .textoNoticiaIndividual h2 {
+        font-size: 1.5rem;
+    }
+    .imgNoticiaIndividual img {
+        max-width: 100%;
+    }
+    .tarjetaAutorNoticia {
+        max-width: 100%;
+        padding: 0.5rem 0.7rem;
+    }
+    .imgContenedorAutor {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Banner de noticia individual */
+.bannerNoticiaIndividual {
+    width: 100vw;
+    height: 55vh;
+    min-height: 55vh;
+    max-height: 55vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 2.5rem;
+}
+@media (max-width: 992px) {
+    .bannerNoticiaIndividual {
+        height: 50vh;
+        min-height: 50vh;
+        max-height: 50vh;
+        margin-bottom: 1.2rem;
+    }
+}
+.textoNoticiaIndividual {
+    background: var(--blanco);
+    border: solid 2px var(--azulElectrico);
+    border-radius: 1.2rem;
+    box-shadow: var(--sombraVertical);
+    padding: 2rem 2.5rem 1.5rem 2.5rem;
+    margin-bottom: 0;
+}
+@media (max-width: 992px) {
+    .textoNoticiaIndividual {
+        padding: 1rem 0.7rem 0.7rem 0.7rem;
+    }
+}
