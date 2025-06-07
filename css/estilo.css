@@ -83,9 +83,8 @@ header#header{
     position: fixed;
     left: 0;
     right: 0;
-    width: 80vw;
-    margin: auto;
-    max-width: 100%;
+    margin: 0 5px !important;
+    max-width: 99vw;
     z-index: 1000;
 
     .navMovil{
@@ -1439,9 +1438,56 @@ button.accordion-button::after{
 
 }
 
+/* PAGINA NOTICIA */
 
 
 
+/* PAGINA ADMIN */
+.columnaItemAd{
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    margin: 1rem 0;
+    text-align: center;
+    
+    
+    
+    p{
+        display: block;
+        font-weight: 700;
+        margin: 1rem 1rem;
+        font-family: "Syne", serif;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+
+    }
+
+    @media screen and (width < 790px) {
+        
+            p{
+                
+                font-size: 1rem;
+            
+            }
+
+
+    }
+
+    @media screen and (width < 490px) {
+        
+            
+            p{
+                
+                font-size: 0.8rem;
+            
+            }
+
+    }
+    
+    
+}
 /* .imgCuadrado{
     width: 100%;
     height: 100%;

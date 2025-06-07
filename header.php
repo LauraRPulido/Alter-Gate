@@ -79,11 +79,11 @@
         </div>
 
         <!-- Menú escritorio -->
-        <div class="row d-flex align-items-center justify-content-between">
+        <div class="row d-flex align-items-center justify-content-evenly">
    
             <nav class="col navbar navbar-expand-lg d-none d-lg-flex">
                 
-                <div class="container-fluid">
+                <div class="container-fluid m-0">
         
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navResponsive" aria-controls="navResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -117,11 +117,8 @@
                 
                 <div class="container-fluid">
         
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navLogin" aria-controls="navLogin" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     
-                    <div class="collapse navbar-collapse" id="navLogin">
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navLogin">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
         
                             <a href="#">Login / Registro</a>
