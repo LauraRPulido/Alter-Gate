@@ -1386,10 +1386,10 @@ button.accordion-button::after{
 }
 
 .accordion-button:not(.collapsed){
-    background-color: var(--negro);
-    color: var(--cyan);
-    box-shadow: var(--sombraCyan);
-    border: 0.3rem solid var(--cyan); 
+    background-color: var(--celeste);
+    color: var(--azulElectrico);
+    box-shadow: var(--sombraVertical);
+    border: 0.3rem solid var(--azulElectrico); 
 
     &&::after{
         background: none;
@@ -1488,6 +1488,248 @@ button.accordion-button::after{
     
     
 }
+
+.botonEliminar{
+    margin: 1.2rem;
+    p{
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+        color: var(--negro);
+        display: block;
+        font-weight: 700;
+        font-family: "Syne", serif;
+        text-transform: uppercase;
+    }
+
+    border: 0.2rem solid var(--negro) !important;
+    background-color: var(--rosa);
+    border-radius: 20px !important;
+    box-shadow: var(--sombraNegVer);
+
+        @media screen and (width < 790px) {
+
+            margin: 1rem;
+        
+            p{
+                
+                font-size: 1rem;
+            
+            }
+
+
+        }
+
+        @media screen and (width < 490px) {
+            
+            margin: 0.7rem;
+
+                p{
+
+                    font-size: 0.8rem;
+                
+                }
+
+        }
+
+    &&:hover{
+        background-color: var(--rosaClaro);
+    }
+    
+
+
+}
+
+.botonEditar{
+    margin: 1.2rem;
+    p{
+        font-size: 1.2rem;
+        padding: 0;
+        margin: 0;
+        color: var(--negro);
+        display: block;
+        font-weight: 700;
+        font-family: "Syne", serif;
+        text-transform: uppercase;
+    }
+
+    border: 0.2rem solid var(--negro) !important;
+    background-color: var(--cyan);
+    border-radius: 20px !important;
+    box-shadow: var(--sombraNegVer);
+
+        @media screen and (width < 790px) {
+            margin: 1rem;
+        
+            p{
+                
+                font-size: 1rem;
+            
+            }
+
+
+        }
+
+        @media screen and (width < 490px) {
+            margin: 0.7rem;
+
+                p{
+
+                    font-size: 0.8rem;
+                
+                }
+
+        }
+    &&:hover{
+        background-color: var(--celeste);
+    }
+
+    
+
+}
+
+.botonEditarPerf{
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    p{
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        color: var(--azulElectrico);
+        display: block;
+        font-weight: 700;
+        font-family: "Syne", serif;
+        
+    }
+
+    border: 0.2rem solid var(--azulElectrico) !important;
+    background-color: var(--cyan);
+
+        @media screen and (width < 790px) {
+            margin: 1rem;
+        
+            p{
+                
+                font-size: 1rem;
+            
+            }
+
+
+        }
+
+        @media screen and (width < 490px) {
+            margin: 0.7rem;
+
+                p{
+
+                    font-size: 0.8rem;
+                
+                }
+
+        }
+    &&:hover{
+        background-color: var(--celeste);
+    }
+
+    
+
+}
+
+.botonAñadir{
+    width: 80%;
+    background-color: var(--celeste);
+    border: 0.2rem solid var(--azulElectrico);
+    color: var(--azulElectrico);
+    border-radius: 1rem;
+    box-shadow: var(--sombraVertical);
+    i{
+        font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 0.5rem;
+    }
+
+    h5{
+        font-weight: 700;
+    }
+
+    &&:hover{
+        border: 0.2rem solid var(--azulElectrico);
+        color: var(--azulElectrico);
+        background-color: var(--cyan);
+    }
+
+}
+
+.noticiaAd{
+        
+    display: flex;
+    flex-direction: column;
+    height: 26vw;
+    width: 39vw;
+    margin: auto;
+    
+    margin-bottom: 20px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--sombraVertical);
+
+    @media screen and (width < 768px) {
+       
+        height: 64vw;
+        width: 77vw;
+        
+    }
+
+    .textoNov{
+        padding-right: 1rem;
+        p{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        @media screen and (width < 1200px) {
+
+            h4{
+
+                 font-size: 1.2rem;
+            
+
+            }
+
+            p{
+                font-size: 0.9rem;
+            }
+    
+    
+        }
+
+        @media screen and (width < 768px) {
+       
+            h4{
+
+                 font-size: 1rem;
+            
+
+            }
+
+            p{
+                font-size: 0.8rem;
+            }
+        
+        }
+
+
+       
+    }
+}
+
+
+
+
+
+
+
 /* .imgCuadrado{
     width: 100%;
     height: 100%;
