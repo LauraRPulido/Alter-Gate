@@ -12,13 +12,11 @@ require_once("./conexion.php");
 
 $id_user = $_SESSION['id'];
 
-// Obtener estilos para el selector
 $estilos = [];
 $stmtEstilos = $gbd->prepare("SELECT id, nombre_estilo, icono FROM estilos_tb ORDER BY nombre_estilo ASC");
 $stmtEstilos->execute();
 $estilos = $stmtEstilos->fetchAll(PDO::FETCH_ASSOC);
 
-// Obtener artículos del usuario para el selector
 $articulos_usuario = [];
 $stmtArt = $gbd->prepare("SELECT id, nombre_art FROM articulos_tb WHERE id_user = ? ORDER BY id DESC LIMIT 20");
 $stmtArt->execute([$id_user]);
@@ -35,7 +33,7 @@ if ($id_coleccion > 0) {
         header('Location:admin.php');
         exit;
     }
-    // Obtener artículos ya asociados a la colección
+
     $stmtSel = $gbd->prepare("SELECT id_articulo FROM coleccion_articulo_tb WHERE id_coleccion = ?");
     $stmtSel->execute([$id_coleccion]);
     $articulos_seleccionados = array_column($stmtSel->fetchAll(PDO::FETCH_ASSOC), 'id_articulo');
@@ -51,7 +49,6 @@ if($_POST){
     $imagen = $coleccion['imagen'];
     $articulos_post = $_POST['articulos'] ?? [];
 
-    // Manejo de imagen
     if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK){
         $imagen = $_FILES['imagen']['name'];
         $ruta = "img/colecciones/" . $imagen;
@@ -59,11 +56,10 @@ if($_POST){
         move_uploaded_file($rutaTemporal, $ruta);
     }
 
-    // Actualizar colección
     $stmt = $gbd->prepare("UPDATE colecciones_tb SET nombre_coleccion=?, descripcion=?, imagen=?, id_estilo=? WHERE id=? AND id_user=?");
     $ok = $stmt->execute([$nombre_coleccion, $descripcion_coleccion, $imagen, $id_estilo, $id_coleccion, $id_user]);
     if($ok){
-        // Actualizar relación artículos-colección (eliminar y volver a insertar)
+
         $stmtDel = $gbd->prepare("DELETE FROM coleccion_articulo_tb WHERE id_coleccion = ?");
         $stmtDel->execute([$id_coleccion]);
         if (!empty($articulos_post)) {

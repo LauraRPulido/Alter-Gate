@@ -11,16 +11,13 @@ if(!isset($_SESSION['id'])){
 
 require_once("./conexion.php");
 
-// Obtener datos del usuario logueado
 $id_user = $_SESSION['id'];
 
-// Obtener artículos del usuario para el selector
 $articulos_usuario = [];
 $stmtArt = $gbd->prepare("SELECT id, nombre_art FROM articulos_tb WHERE id_user = ? ORDER BY id DESC LIMIT 20");
 $stmtArt->execute([$id_user]);
 $articulos_usuario = $stmtArt->fetchAll(PDO::FETCH_ASSOC);
 
-// Obtener estilos para el selector
 $estilos = [];
 $stmtEstilos = $gbd->prepare("SELECT id, nombre_estilo, icono FROM estilos_tb ORDER BY nombre_estilo ASC");
 $stmtEstilos->execute();
@@ -33,7 +30,7 @@ if($_POST){
     $imagen = '';
     $articulos_seleccionados = $_POST['articulos'] ?? [];
 
-    // Manejo de imagen
+    // MANEJO IMAGEN
     if(isset($_FILES['imagen'])){
         $imagen = $_FILES['imagen']['name'];
         $ruta = "img/colecciones/" . $imagen;
@@ -41,7 +38,6 @@ if($_POST){
         move_uploaded_file($rutaTemporal, $ruta);
     }
 
-    // Insertar colección
     $stmt = $gbd->prepare("INSERT INTO colecciones_tb (nombre_coleccion, descripcion, imagen, id_user, id_estilo) VALUES (?, ?, ?, ?, ?)");
     $ok = $stmt->execute([$nombre_coleccion, $descripcion_coleccion, $imagen, $id_user, $id_estilo]);
     if($ok){

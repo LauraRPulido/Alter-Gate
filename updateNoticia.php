@@ -31,16 +31,16 @@ if($_POST){
     $titulo = $_POST['titulo'] ?? '';
     $subtitulo = $_POST['subtitulo'] ?? '';
     $contenido = $_POST['contenido'] ?? '';
-    $fecha = $noticia['fecha']; // Mantener la fecha original
+    $fecha = $noticia['fecha'];
     $imagen = $noticia['imagen'];
-    // Manejo de imagen
+    // MANEJO IMAFEN
     if(isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK){
         $imagen = $_FILES['imagen']['name'];
         $ruta = "img/noticias/" . $imagen;
         $rutaTemporal = $_FILES['imagen']['tmp_name'];
         move_uploaded_file($rutaTemporal, $ruta);
     }
-    // Actualizar noticia
+    
     $stmt = $gbd->prepare("UPDATE noticias_tb SET titulo=?, subtitulo=?, contenido=?, imagen=? WHERE id=? AND id_user=?");
     $ok = $stmt->execute([$titulo, $subtitulo, $contenido, $imagen, $id_noticia, $id_user]);
     if($ok){

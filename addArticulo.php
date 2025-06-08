@@ -11,10 +11,10 @@ if(!isset($_SESSION['id'])){
 
 require_once("./conexion.php");
 
-// Obtener datos del usuario logueado
+
 $id_user = $_SESSION['id'];
 
-// Obtener estilos para el selector
+
 $estilos = [];
 $stmtEstilos = $gbd->prepare("SELECT id, nombre_estilo, icono FROM estilos_tb ORDER BY nombre_estilo ASC");
 $stmtEstilos->execute();
@@ -35,7 +35,7 @@ if($_POST){
         move_uploaded_file($rutaTemporal, $ruta);
     }
 
-    // Insertar artículo
+
     $stmt = $gbd->prepare("INSERT INTO articulos_tb (nombre_art, descripcion_art, enlace_art, img_art, id_user, id_estilo) VALUES (?, ?, ?, ?, ?, ?)");
     $ok = $stmt->execute([$nombre_art, $descripcion_art, $enlace_art, $img_art, $id_user, $id_estilo]);
     if($ok){

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $mensaje = registrar($gbd, $username, $password);
-    // Si el registro fue correcto, loguear automáticamente
+    
     if ($mensaje === 'Registro correcto') {
         $stmt = $gbd->prepare("SELECT * FROM users_tb WHERE username = ?");
         $stmt->execute([$username]);

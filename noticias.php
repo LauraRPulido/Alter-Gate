@@ -1,6 +1,6 @@
 <?php include_once("./header.php");
 include_once("./conexion.php");
-// Obtener noticias recientes
+//ORDENAR POR FECHA
 $noticias = $gbd->query("SELECT * FROM noticias_tb ORDER BY fecha DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 ?>

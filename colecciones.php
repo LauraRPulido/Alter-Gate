@@ -1,6 +1,6 @@
 <?php
 include_once("./conexion.php");
-// Obtener estilos
+
 $estilos = $gbd->query("SELECT * FROM estilos_tb")->fetchAll(PDO::FETCH_ASSOC);
 $estilo = isset($_GET['estilo']) ? intval($_GET['estilo']) : 0;
 $nombreEstilo = "todo";

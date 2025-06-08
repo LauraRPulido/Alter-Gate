@@ -11,23 +11,22 @@ if(!isset($_SESSION['id'])){
 
 require_once("./conexion.php");
 
-// Obtener datos del usuario logueado
 $id_user = $_SESSION['id'];
 
 if($_POST){
     $titulo = $_POST['titulo'] ?? '';
     $subtitulo = $_POST['subtitulo'] ?? '';
     $contenido = $_POST['contenido'] ?? '';
-    $fecha = date('Y-m-d'); // Siempre la fecha actual
+    $fecha = date('Y-m-d');
     $imagen = '';
-    // Manejo de imagen
+    // MANEJO IMAGEN
     if(isset($_FILES['imagen'])){
         $imagen = $_FILES['imagen']['name'];
         $ruta = "img/noticias/" . $imagen;
         $rutaTemporal = $_FILES['imagen']['tmp_name'];
         move_uploaded_file($rutaTemporal, $ruta);
     }
-    // Insertar noticia
+
     $stmt = $gbd->prepare("INSERT INTO noticias_tb (titulo, subtitulo, contenido, fecha, imagen, id_user) VALUES (?, ?, ?, ?, ?, ?)");
     $ok = $stmt->execute([$titulo, $subtitulo, $contenido, $fecha, $imagen, $id_user]);
     if($ok){

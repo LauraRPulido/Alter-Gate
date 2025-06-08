@@ -184,7 +184,7 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 function borrado(tipo, idBorrado){
     let ok = confirm("¿Estás seguro de borrar este registro?" + idBorrado);
     if(ok){
-        window.location = "deleteContenidos.php?tipo=" + tipo + "&id=" + idBorrado;
+        window.location = "deleteContenidos.php?tipo= " + tipo + "&id= " + idBorrado;
     }
 }
 </script>

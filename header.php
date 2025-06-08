@@ -97,7 +97,7 @@ if (session_status() === PHP_SESSION_NONE) {
     
         </div>
 
-        <!-- Menú escritorio -->
+        <!-- MENU ESCRITORIO -->
         <div class="row d-none d-lg-grid align-items-center" style="display: grid; grid-template-columns: 1fr auto 1fr; justify-items: center; align-items: center;">
             <nav class="navbar navbar-expand-lg justify-content-start" style="grid-column: 1;">
                 <div class="container-fluid m-0">

@@ -41,11 +41,11 @@ if ($id > 0) {
 
                             <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
                                 <h4 class="text-white display-5 display-md-4 display-lg-3 fw-bold mb-2" style="line-height:1.1;">
-  <?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?>
-</h4>
-<p class="text-white fs-4 fs-md-3 fs-lg-2 fw-light mb-3" style="line-height:1.3;">
-  <?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?>
-</p>
+                                  <?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?>
+                                </h4>
+                                <p class="text-white fs-4 fs-md-3 fs-lg-2 fw-light mb-3" style="line-height:1.3;">
+                                  <?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?>
+                                </p>
                                 <?php if (!empty($diseñador['enlace'])): ?>
                                     <a href="<?= htmlspecialchars($diseñador['enlace']) ?>" target="_blank" class="perfilLink my-2">Ir al sitio del diseñador</a>
                                 <?php endif; ?>
