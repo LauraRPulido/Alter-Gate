@@ -9,19 +9,19 @@ if(!isset($_SESSION['id'])){
     exit;
 }
 $id_user = $_SESSION['id'];
-// Noticias del usuario
+
 $stmtNoticias = $gbd->prepare("SELECT * FROM noticias_tb WHERE id_user = ? ORDER BY fecha DESC");
 $stmtNoticias->execute([$id_user]);
 $noticias = $stmtNoticias->fetchAll(PDO::FETCH_ASSOC);
-// Artículos del usuario
+
 $stmtArticulos = $gbd->prepare("SELECT * FROM articulos_tb WHERE id_user = ? ORDER BY id DESC");
 $stmtArticulos->execute([$id_user]);
 $articulos = $stmtArticulos->fetchAll(PDO::FETCH_ASSOC);
-// Colecciones del usuario
+
 $stmtColecciones = $gbd->prepare("SELECT * FROM colecciones_tb WHERE id_user = ? ORDER BY id DESC");
 $stmtColecciones->execute([$id_user]);
 $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
-// Obtener datos del usuario para mostrar en el perfil
+
 $stmtUser = $gbd->prepare("SELECT * FROM users_tb WHERE id = ?");
 $stmtUser->execute([$id_user]);
 $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
@@ -33,16 +33,19 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
           <div class="container-fluid bannerDis px-5 py-2">
             <div class="row py-3 d-flex align-items-center flex-column flex-lg-column flex-xl-row justify-content-xl-between">
               <div class="col-auto">
+                <a href="">
                   <div class="contenedorPerfil">
                       <img src="./img/<?= htmlspecialchars($user['imgUser'] ?? 'diseñadorEmilio.jpg') ?>" alt="<?= htmlspecialchars($user['username'] ?? '') ?>" class="imagenCirculo">
-                  </div>    
+                  </div>
+                </a>    
               </div>
               <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
                   <h4><?= htmlspecialchars($user['username'] ?? '') ?></h4>
                   <p><?= htmlspecialchars($user['bio'] ?? 'Sin biografía.') ?></p>
-                  <a href="mailto:<?= htmlspecialchars($user['email'] ?? '') ?>">Contactar</a>
+                  <a class="text-light f-small fw-light" href="mailto:<?= htmlspecialchars($user['enlace'] ?? '') ?>"><?= htmlspecialchars($user['enlace'] ?? '') ?></a>
                   <div class="d-flex flex-column flex-md-row justify-content-center justify-content-xl-start  w-100">
-                      <a class="btn botonEditarPerf"><p>Editar Perfil</p></a>
+                      <a class="btn botonEditarPerf" href="updateUser.php"><p>Editar Perfil</p></a>
+                      <a class="btn botonCerrarSesion ms-2" href="logout.php"><p>Cerrar sesión</p></a>
                   </div>
               </div>
               <div class="d-flex col-12 col-xl-auto text-center text-xl-start justify-content-center gap-3">
@@ -93,15 +96,15 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
               <?php foreach($colecciones as $coleccion) { ?>
                 <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
                   <a href="coleccion.php?id=<?= htmlspecialchars($coleccion['id']) ?>">
-                    <div class="coleccionCardDis" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
+                    <div class="coleccionCardDis mb-0" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
                       <div class="textoColDis">
                         <h4>"<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
                       </div>
                     </div>
                   </a>
-                  <div class="d-flex justify-content-evenly">
+                  <div class="d-flex justify-content-evenly mb-5">
                     <a class="btn botonEditar" href="updateColeccion.php?id=<?= htmlspecialchars($coleccion['id']) ?>"><p>Editar</p></a>
-                    <a class="btn botonEliminar"><p>Eliminar</p></a>
+                    <a class="btn botonEliminar" onclick="borrado('coleccion', <?= $coleccion['id'] ?>)"><p>Eliminar</p></a>
                   </div>
                 </div>
               <?php } ?>
@@ -126,8 +129,8 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
                     </div>
                     <p><?= htmlspecialchars($articulo['nombre_art']) ?></p>
                     <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                      <a class="btn botonEditar" href="updateArticulo.php?id=<?= htmlspecialchars($articulo['id']) ?>"><p>Editar</p></a>
-                      <a class="btn botonEliminar"><p>Eliminar</p></a>
+                      <a class="btn botonEditar mt-0" href="updateArticulo.php?id=<?= htmlspecialchars($articulo['id']) ?>"><p>Editar</p></a>
+                      <a class="btn botonEliminar mt-0" onclick="borrado('articulo', <?= $articulo['id'] ?>)"><p>Eliminar</p></a>
                     </div>
                   </div>
                 <?php } ?>
@@ -150,7 +153,7 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
                 <?php foreach($noticias as $noticia): ?>
                   <div class="col-12 col-md-6 p-0 mx-auto">
                     <a href="noticia.php?id=<?= htmlspecialchars($noticia['id']) ?>">
-                      <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
+                      <div class="noticiaAd mb-0" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
                           <div class="textoNov">
                               <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
                               <p><?php
@@ -160,9 +163,9 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
                           </div>
                       </div>
                     </a>
-                      <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
+                      <div class="d-flex flex-column flex-md-row justify-content-evenly w-100 mb-5">
                           <a class="btn botonEditar" href="updateNoticia.php?id=<?= htmlspecialchars($noticia['id']) ?>"><p>Editar</p></a>
-                          <a class="btn botonEliminar"><p>Eliminar</p></a>
+                          <a class="btn botonEliminar" onclick="borrado('noticia', <?= $noticia['id'] ?>)"><p>Eliminar</p></a>
                       </div>
                   </div>
                 <?php endforeach; ?>
@@ -175,13 +178,12 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
   </section>
 
 <script>
-  	function borrado(idBorrado){
-			let ok = confirm("¿Estás seguro de borrar este registro?" + idBorrado);
-
-			if(ok){
-				window.location = "deleteEntrada.php?id_entrada=" + idBorrado;
-			}
-		}
+function borrado(tipo, idBorrado){
+    let ok = confirm("¿Estás seguro de borrar este registro?" + idBorrado);
+    if(ok){
+        window.location = "deleteContenidos.php?tipo=" + tipo + "&id=" + idBorrado;
+    }
+}
 </script>
   
 <?php include_once("./footer.php");?>

@@ -24,7 +24,7 @@
 
             <div class="col text-center">
                 <a class="navbar-brand" href="./index.php">
-                    <img class="" src="./img/logo altergate.png" alt="">
+                    <img class="" src="./img/logoAlterGate3" alt="">
                 </a>
             </div>
         </div>
@@ -128,6 +128,9 @@
                             $loginHref = $isLogged ? 'admin.php' : 'login.php';
                             ?>
                             <a href="<?= $loginHref ?>"><?= $isLogged ? 'Cuenta' : 'Login' ?></a>
+                        </div>
+                        <div class="navbar-nav navbar-escritorio py-2 ms-2 px-1">
+                            <a href="registro.php">Registro</a>
                         </div> 
             
                     </div>

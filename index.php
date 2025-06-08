@@ -176,7 +176,7 @@
                             <img src="./img/diseñadorEmilio.jpg" alt="Emilio Fernandez Diseñador" class="img-fluid imagenCirculo">
                         </div>
                         <div class="d-flex flex-column justify-content-evenly infoDis">
-                            <h3 class="text-center">Emilio Fernandez</h3>
+                            <h3 class="text-center">Emilio Fernández</h3>
                             <div class="descripcion">
                                 <p class="text-center px-3">"Rompiendo esquemas con diseños audaces y tejidos vanguardistas. La moda es arte y yo pinto con tela."</p>
                             </div>
