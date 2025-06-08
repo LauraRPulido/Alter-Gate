@@ -4,6 +4,8 @@ require_once("./conexion.php");
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $diseñador = null;
 $articulos = [];
+$colecciones = [];
+$noticias = [];
 if ($id > 0) {
     // Consulta para obtener la información del diseñador
     $stmt = $gbd->prepare("SELECT * FROM users_tb WHERE id = ? LIMIT 1");
@@ -13,6 +15,13 @@ if ($id > 0) {
     $stmt2 = $gbd->prepare("SELECT * FROM articulos_tb WHERE id_user = ?");
     $stmt2->execute([$id]);
     $articulos = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    // Obtener colecciones del diseñador
+    $stmtCol = $gbd->prepare("SELECT * FROM colecciones_tb WHERE id_user = ?");
+    $stmtCol->execute([$id]);
+    $colecciones = $stmtCol->fetchAll(PDO::FETCH_ASSOC);
+    $stmtNoticias = $gbd->prepare("SELECT noticias_tb.* FROM noticias_tb INNER JOIN users_tb ON noticias_tb.id_user = users_tb.id WHERE users_tb.id = ? ORDER BY fecha DESC");
+    $stmtNoticias->execute([$id]);
+    $noticias = $stmtNoticias->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 <?php include_once("./header.php");?>
@@ -34,7 +43,7 @@ if ($id > 0) {
                                 <h4><?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?></h4>
                                 <p><?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?></p>
                                 <?php if (!empty($diseñador['enlace'])): ?>
-                                    <a href="<?= htmlspecialchars($diseñador['enlace']) ?>" target="_blank" class="btn btn-outline-dark my-2">Ir al sitio del diseñador</a>
+                                    <a href="<?= htmlspecialchars($diseñador['enlace']) ?>" target="_blank" class="perfilLink my-2">Ir al sitio del diseñador</a>
                                 <?php endif; ?>
                             </div>
 
@@ -53,7 +62,7 @@ if ($id > 0) {
                                 </div>
                                 <div class="contContadores">
                                     <p>Colecciones</p>
-                                    <h5>0</h5>
+                                    <h5><?= count($colecciones) ?></h5>
 
                                 </div>
 
@@ -81,14 +90,17 @@ if ($id > 0) {
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
           <div class="accordion-body container-fluid">
             <div class="row d-flex justify-content-center g-4 m-0 p-0 "> 
+                <?php foreach($colecciones as $coleccion) { ?>
                 <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                    <div class="coleccionCardDis" style="background-image: url(../img/colecciones/) center center /cover;">
-                        <div class="textoColDis">
-                            <h4>Colección: "Alt Gore"</h4>
+                    <a href="coleccion.php?id=<?= $coleccion['id'] ?>" class="text-decoration-none">
+                        <div class="coleccionCardDis" style="background-image: url(./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>); background-position: center; background-size: cover;">
+                            <div class="textoColDis">
+                                <h4>Colección: "<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-                
+                <?php } ?>
             </div>
           </div>
         </div>
@@ -118,6 +130,35 @@ if ($id > 0) {
           </div>
         </div>
         </div>
+        <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            Noticias
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            <div class="container-fluid">
+                <?php foreach($noticias as $noticia): ?>
+                  <div class="row pb-3">
+                      <div class="col-12 col-md-6 p-0 mx-auto ">
+                          <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;" >
+                              <div class="textoNov">
+                                  <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
+                                  <p><?php
+                                    $contenido = $noticia['contenido'] ?? '';
+                                    echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
+                                    ?></p>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+                <?php endforeach; ?>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
 

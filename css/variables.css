@@ -23,6 +23,7 @@
 /* Sombras */
     --sombraNav: 2px 5px 0px 0px rgba(39, 9, 131, 1);
     --sombraVertical: 0px 5px 0px 0px rgba(39, 9, 131, 1);
+    --sombraVerticalCyan: 0px 5px 0px 0px #88E2F2;
     --sombraBlanca: 0.7px 1.9px 0px 0px
     rgba(230, 248, 254, 1);
     --sombraCyan: 2px 5px 0px 0px rgba(136, 226, 242, 1);

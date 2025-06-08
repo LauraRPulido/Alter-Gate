@@ -416,6 +416,28 @@ section#banner{
 
 }
 
+.perfilLink {
+    background-color: var(--celeste);
+    text-transform: uppercase;
+    border: solid 1px var(--azulElectrico);
+    box-shadow: var(--sombraVertical);
+    border-radius: 3px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: var(--azulElectrico);
+    font-family: "Syne Mono", serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    display: inline-block;
+    text-decoration: none;
+}
+.perfilLink:hover {
+    background-color: var(--cyan);
+    color: var(--azulElectrico);
+}
+
 .coleccionCard{
     
     display: flex;
@@ -1515,7 +1537,6 @@ button.accordion-button::after{
     text-align: center;
     
     
-    
     p{
         display: block;
         font-weight: 700;
@@ -1653,6 +1674,7 @@ button.accordion-button::after{
 .botonEditarPerf{
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
+    box-shadow: var(--sombraVertical);
     p{
         font-size: 1rem;
         padding: 0;
@@ -2010,5 +2032,113 @@ section#producto{
 @media (max-width: 992px) {
     .textoNoticiaIndividual {
         padding: 1rem 0.7rem 0.7rem 0.7rem;
+    }
+}
+
+main#addContainer{
+    padding-top: 10vh;
+
+    @media screen and (width < 995px) {
+        padding-top: 20vh;
+        
+    }
+}
+.addArticulo {
+    background: var(--blanco);
+    border-radius: 1.5rem;
+    box-shadow: var(--sombraVertical);
+    padding: 2.5rem 2rem 2rem 2rem;
+    max-width: 600px;
+    
+    margin-bottom: 4rem !important;
+    border: 2px solid var(--azulElectrico);
+
+    h2 {
+        font-family: "Syne", serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--azulElectrico);
+        margin-bottom: 2rem;
+        @media (max-width: 600px) {
+            font-size: 1.5rem;
+        }
+    }
+    .form-label {
+        font-family: "Syne Mono", serif;
+        color: var(--azulElectrico);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .form-control {
+        border: 2px solid var(--azulElectrico);
+        border-radius: 0.8rem;
+        font-family: "Syne", serif;
+        font-size: 1.1rem;
+        color: var(--negro);
+        background: var(--blanco);
+        box-shadow: var(--sombraFinaAzul);
+        transition: border-color 0.2s, box-shadow 0.2s;
+        padding: 0.7rem 1.2rem;
+        &::file-selector-button {
+            font-family: inherit;
+        }
+        &:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 0.2rem var(--cyan);
+            outline: none;
+            background-color: var(--blanco);
+            color: var(--azulElectrico);
+        }
+    }
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+    input[type="file"].form-control {
+        background-color: var(--blanco);
+        color: var(--azulElectrico);
+        border-style: dashed;
+        padding: 0.5rem 1rem;
+        border-radius: 0.8rem;
+    }
+    .btn {
+        font-family: "Syne Mono", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 0.8rem;
+        padding: 0.7rem 2.2rem;
+        
+        border-width: 2px;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-primary {
+        background: var(--celeste);
+        color: var(--azulElectrico);
+        border-color: var(--azulElectrico);
+        box-shadow: var(--sombraVertical);
+        &:hover, &:focus {
+            background: var(--cyan);
+            color: var(--azulElectrico);
+            border-color: var(--cyan);
+        }
+    }
+    .btn-secondary {
+        background: var(--negro);
+        color: var(--cyan);
+        border-color: var(--cyan);
+        box-shadow: var(--sombraVerticalCyan);
+        &:hover, &:focus {
+            background: var(--azulElectrico);
+            color: var(--blanco);
+            border-color: var(--azulElectrico);
+        }
+    }
+    .d-flex {
+        justify-content: flex-start;
+    }
+    @media (max-width: 600px) {
+        padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+        max-width: 98vw;
     }
 }

@@ -1,3 +1,21 @@
+<?php 
+require_once("./conexion.php");
+$noticias = [];
+$articulos = [];
+$colecciones = [];
+// Noticias
+$stmtNoticias = $gbd->prepare("SELECT noticias_tb.* FROM noticias_tb INNER JOIN users_tb ON noticias_tb.id_user = users_tb.id ORDER BY fecha DESC");
+$stmtNoticias->execute();
+$noticias = $stmtNoticias->fetchAll(PDO::FETCH_ASSOC);
+// Artículos
+$stmtArticulos = $gbd->prepare("SELECT articulos_tb.* FROM articulos_tb INNER JOIN users_tb ON articulos_tb.id_user = users_tb.id ORDER BY articulos_tb.id DESC");
+$stmtArticulos->execute();
+$articulos = $stmtArticulos->fetchAll(PDO::FETCH_ASSOC);
+// Colecciones
+$stmtColecciones = $gbd->prepare("SELECT colecciones_tb.* FROM colecciones_tb INNER JOIN users_tb ON colecciones_tb.id_user = users_tb.id ORDER BY colecciones_tb.id DESC");
+$stmtColecciones->execute();
+$colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
+?>
 <?php include_once("./header.php");?>
     
   <section id="bannerDis">
@@ -71,23 +89,23 @@
         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
           <div class="accordion-body container-fluid">
             <div class="row d-flex justify-content-center g-4 m-0 p-0">
-              <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                <div class="coleccionCardDis" style="background-image: url('../img/colecciones/') center center /cover;">
-                  <div class="textoColDis">
-                    <h4>Colección: "Alt Gore"</h4>
+              <?php foreach($colecciones as $coleccion) { ?>
+                <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
+                  <div class="coleccionCardDis" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
+                    <div class="textoColDis">
+                      <h4>Colección: "<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
+                    </div>
+                  </div>
+                  <div class="d-flex justify-content-evenly">
+                    <a href="" onclick ="borrado()" class="btn botonEditar"><p>Editar</p></a>
+                    <a href="" onclick ="borrado()" class="btn botonEliminar"><p>Eliminar</p></a>
                   </div>
                 </div>
-                <div class="d-flex justify-content-evenly">
-                  <a href="" onclick ="borrado()" class="btn botonEditar"><p>Editar</p></a>
-                  <a href="" onclick ="borrado()" class="btn botonEliminar"><p>Eliminar</p></a>
-                </div>
-              </div>
+              <?php } ?>
             </div>
           </div>
         </div>
       </div>
-    
-    
       <div class="accordion-item">
         <h2 class="accordion-header">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
@@ -98,32 +116,18 @@
           <div class="accordion-body">
             <div class="container-fluid">
               <div class="row my-5">
-
-                <div class="columnaItemAd col-6 col-lg-4 col-xl-3">
+                <?php foreach($articulos as $articulo) { ?>
+                  <div class="columnaItemAd col-6 col-lg-4 col-xl-3 mx-auto">
                     <div class="contenedorImagenItem">
-                      <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
+                      <img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt="">
                     </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
+                    <p><?= htmlspecialchars($articulo['nombre_art']) ?></p>
                     <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
                       <a class="btn botonEditar"><p>Editar</p></a>
                       <a class="btn botonEliminar"><p>Eliminar</p></a>
                     </div>
-                  
-                </div>
-              
-
-                <div class="columnaItemAd col-6 col-lg-4 col-xl-3">
-                    <div class="contenedorImagenItem">
-                      <img src="./img/imgArticulos/camiseta-de-manga-larga-silver-heart-minga-london.jpg" alt="">
-                    </div>
-                    <p>Camiseta de Manga Larga Silver Heart - Minga London</p>
-                    <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                      <a class="btn botonEditar"><p>Editar</p></a>
-                      <a class="btn botonEliminar"><p>Eliminar</p></a>
-                    </div>
-                  
-                </div>
-
+                  </div>
+                <?php } ?>
               </div>
             </div>
           </div>
@@ -139,13 +143,16 @@
         <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
           <div class="accordion-body">
             <div class="container-fluid">
-          
               <div class="row pb-3">
-                  <div class="col-12 col-md-6 p-0">
-                      <div class="noticiaAd">
+                <?php foreach($noticias as $noticia): ?>
+                  <div class="col-12 col-md-6 p-0 mx-auto">
+                      <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
                           <div class="textoNov">
-                              <h4>El efecto 2000 de la moda</h4>
-                              <p>EL Y2K es el nombre del temido fallo informático...</p>
+                              <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
+                              <p><?php
+                                $contenido = $noticia['contenido'] ?? '';
+                                echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
+                                ?></p>
                           </div>
                       </div>
                       <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
@@ -153,33 +160,8 @@
                           <a class="btn botonEliminar"><p>Eliminar</p></a>
                       </div>
                   </div>
-
-                  <div class="col-12 col-md-6 p-0">
-                      <div class="noticiaAd" style="background: url();">
-                          <div class="textoNov">
-                              <h4>Vuelve 'scene'</h4>
-                              <p>Un puñado de 'influencers' y antihéroes saefe esaf  fewf dawef.</p>
-                          </div>
-                      </div>
-                      <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                          <a class="btn botonEditar"><p>Editar</p></a>
-                          <a class="btn botonEliminar"><p>Eliminar</p></a>
-                      </div>
-                  </div>
-                  <div class="col-12 col-md-6 p-0">
-                      <div class="noticiaAd" style="background: url();">
-                          <div class="textoNov">
-                              <h4>Vuelve 'scene'</h4>
-                              <p>Un puñado de 'influencers' y antihéroes...</p>
-                          </div>
-                      </div>
-                      <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                          <a class="btn botonEditar"><p>Editar</p></a>
-                          <a class="btn botonEliminar"><p>Eliminar</p></a>
-                      </div>
-                  </div>
+                <?php endforeach; ?>
               </div>
-
             </div>
           </div>
         </div>

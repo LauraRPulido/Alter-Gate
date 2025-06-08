@@ -42,11 +42,13 @@ if ($estilo > 0) {
     <div class="row d-flex justify-content-center g-4 pb-5 pt-5 m-0 p-0 ">
         <?php foreach($colecciones as $coleccion) { ?>
             <div class="col-12 col-lg-6 p-0 m-0">
-                <div class="coleccionCard" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
-                    <div class="textoCol">
-                        <h4><?= htmlspecialchars($coleccion['nombre_coleccion']) ?></h4>
+                <a href="coleccion.php?id=<?= $coleccion['id'] ?>" class="text-decoration-none">
+                    <div class="coleccionCard" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
+                        <div class="textoCol">
+                            <h4><?= htmlspecialchars($coleccion['nombre_coleccion']) ?></h4>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         <?php } ?>
     </div>
