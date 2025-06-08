@@ -24,11 +24,11 @@ function login($gbd,$user,$pass,$rec){
     $sentencia->execute([$user]);
     $usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-    if($usuario && password_verify($pass,$usuario['password'])){
+    if($usuario && password_verify($pass,$user['password'])){
         session_start();
-        $_SESSION['id_usuario'] = $usuario['id_usuario'];
+        $_SESSION['id'] = $user['id'];
         if($rec == true){
-            setcookie('id_usuario',$usuario['id_usuario'],time()+3600);
+            setcookie('id',$user['id'],time()+3600);
         }
         header('Location:admin.php');
     }

@@ -23,7 +23,7 @@
         <div class="row d-flex justify-content-center d-lg-none m-4">
 
             <div class="col text-center">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="./index.php">
                     <img class="" src="./img/logo altergate.png" alt="">
                 </a>
             </div>
@@ -120,9 +120,14 @@
                     
                     <div class="collapse navbar-collapse d-flex justify-content-end" id="navLogin">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
-        
-                            <a href="#">Login</a>
-                            
+                            <?php
+                            $isLogged = false;
+                            if (isset($_SESSION['id']) || isset($_COOKIE['id'])) {
+                                $isLogged = true;
+                            }
+                            $loginHref = $isLogged ? 'admin.php' : 'login.php';
+                            ?>
+                            <a href="<?= $loginHref ?>"><?= $isLogged ? 'Cuenta' : 'Login' ?></a>
                         </div> 
             
                     </div>

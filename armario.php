@@ -46,18 +46,18 @@ if ($estilo > 0) {
         <div class="container-fluid">
             <div class="row mt-5">
                 <?php foreach($resultados as $fila){ ?>
-                    <a href="./articulo.php?id=<?=$fila['id']?>">
-
-                        <div class="col-12 col-lg-4 col-xl-3 columnaItem jus
-                        tify-content-center d-flex flex-column align-items-center text-dark">
-                            <div class="contenedorImagenItemArmario">
+                    
+                    <div class="col-12 col-lg-4 col-xl-3 columnaItem jus
+                        tify-content-center d-flex flex-column align-items-center ">
+                        <a href="./articulo.php?id=<?=$fila['id']?>">
+                            <div class="contenedorImagenItemArmario ">
                                 <img src="./img/imgArticulos/<?= $fila['img_art']?>" alt="">
                             </div>
-                            <p><?= $fila['nombre_art']?></p>
+                            <p class="text-dark"><?= $fila['nombre_art']?></p>
+                        </a>
     
-                        </div>
-
-                    </a>
+                    </div>
+            
                 <?php } ?>
                 
             </div>

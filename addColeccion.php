@@ -1,18 +1,18 @@
 <?php
 session_start();
 require_once('./functions.php');
-if(isset($_COOKIE['id_usuario'])){
-    $_SESSION['id_usuario'] = $_COOKIE['id_usuario'];
+if(isset($_COOKIE['id'])){
+    $_SESSION['id'] = $_COOKIE['id'];
 }
-if(!isset($_SESSION['id_usuario'])){
-    header('location:login.html');
+if(!isset($_SESSION['id'])){
+    header('location:login.php');
     exit;
 }
 
 require_once("./conexion.php");
 
 // Obtener datos del usuario logueado
-$id_user = $_SESSION['id_usuario'];
+$id_user = $_SESSION['id'];
 
 // Obtener artículos del usuario para el selector
 $articulos_usuario = [];

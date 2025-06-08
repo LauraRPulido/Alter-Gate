@@ -61,7 +61,7 @@ if(isset ($_GET['id'])){
     <div class="container-fluid">
             <div class="row my-5">
                 <?php foreach($articulos as $articulo): ?>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem">
+                <div class="col-6 col-lg-4 col-xl-3 columnaItem justify-content-center d-flex flex-column align-items-center text-dark">
                     <div class="contenedorImagenItem">
                         <img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt="<?= htmlspecialchars($articulo['nombre_art']) ?>">
                     </div>

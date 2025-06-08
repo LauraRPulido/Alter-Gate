@@ -1,75 +1,76 @@
 <?php 
+session_start();
 require_once("./conexion.php");
-$noticias = [];
-$articulos = [];
-$colecciones = [];
-// Noticias
-$stmtNoticias = $gbd->prepare("SELECT noticias_tb.* FROM noticias_tb INNER JOIN users_tb ON noticias_tb.id_user = users_tb.id ORDER BY fecha DESC");
-$stmtNoticias->execute();
+if(isset($_COOKIE['id'])){
+    $_SESSION['id'] = $_COOKIE['id'];
+}
+if(!isset($_SESSION['id'])){
+    header('location:login.php');
+    exit;
+}
+$id_user = $_SESSION['id'];
+// Noticias del usuario
+$stmtNoticias = $gbd->prepare("SELECT * FROM noticias_tb WHERE id_user = ? ORDER BY fecha DESC");
+$stmtNoticias->execute([$id_user]);
 $noticias = $stmtNoticias->fetchAll(PDO::FETCH_ASSOC);
-// Artículos
-$stmtArticulos = $gbd->prepare("SELECT articulos_tb.* FROM articulos_tb INNER JOIN users_tb ON articulos_tb.id_user = users_tb.id ORDER BY articulos_tb.id DESC");
-$stmtArticulos->execute();
+// Artículos del usuario
+$stmtArticulos = $gbd->prepare("SELECT * FROM articulos_tb WHERE id_user = ? ORDER BY id DESC");
+$stmtArticulos->execute([$id_user]);
 $articulos = $stmtArticulos->fetchAll(PDO::FETCH_ASSOC);
-// Colecciones
-$stmtColecciones = $gbd->prepare("SELECT colecciones_tb.* FROM colecciones_tb INNER JOIN users_tb ON colecciones_tb.id_user = users_tb.id ORDER BY colecciones_tb.id DESC");
-$stmtColecciones->execute();
+// Colecciones del usuario
+$stmtColecciones = $gbd->prepare("SELECT * FROM colecciones_tb WHERE id_user = ? ORDER BY id DESC");
+$stmtColecciones->execute([$id_user]);
 $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
+// Obtener datos del usuario para mostrar en el perfil
+$stmtUser = $gbd->prepare("SELECT * FROM users_tb WHERE id = ?");
+$stmtUser->execute([$id_user]);
+$user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 ?>
 <?php include_once("./header.php");?>
     
   <section id="bannerDis">
-
         <div class="container-fluid d-flex justify-content-center px-4">
-           
           <div class="container-fluid bannerDis px-5 py-2">
             <div class="row py-3 d-flex align-items-center flex-column flex-lg-column flex-xl-row justify-content-xl-between">
               <div class="col-auto">
                   <div class="contenedorPerfil">
-                      <img src="./img/diseñadorEmilio.jpg" alt="" class="imagenCirculo">
+                      <img src="./img/<?= htmlspecialchars($user['imgUser'] ?? 'diseñadorEmilio.jpg') ?>" alt="<?= htmlspecialchars($user['username'] ?? '') ?>" class="imagenCirculo">
                   </div>    
               </div>
-
               <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
-                  <h4>Emilio Fernández</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus doloremque temporibus animi, accusantium dolorum asperiores aut. Error earum excepturi voluptas tempore a! Dolor.</p>
-                  <a href="">wdwd</a>
+                  <h4><?= htmlspecialchars($user['username'] ?? '') ?></h4>
+                  <p><?= htmlspecialchars($user['bio'] ?? 'Sin biografía.') ?></p>
+                  <a href="mailto:<?= htmlspecialchars($user['email'] ?? '') ?>">Contactar</a>
                   <div class="d-flex flex-column flex-md-row justify-content-center justify-content-xl-start  w-100">
                       <a class="btn botonEditarPerf"><p>Editar Perfil</p></a>
                   </div>
               </div>
-
               <div class="d-flex col-12 col-xl-auto text-center text-xl-start justify-content-center gap-3">
                   <div class="contContadores">
                       <p>Me gusta</p>
-                      <h5>120<span></h5>
-                      
+                      <h5><?= htmlspecialchars($user['likes'] ?? '0') ?><span></h5>
                   </div>
                   <div class="contContadores">
                       <p>Artículos</p>
-                      <h5>120</h5>
-                      
+                      <h5><?= count($articulos) ?></h5>
                   </div>
                   <div class="contContadores">
                       <p>Colecciones</p>
-                      <h5>120</h5>
+                      <h5><?= count($colecciones) ?></h5>
                   </div>
               </div>
-                        
-
+            </div>
           </div>
         </div>
-
-        
   </section>
 
   <section id="addBotones">
 
     <div class="container">
       <div class="row text-center">
-        <div class="col-12 col-sm-4"><a class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Artículo</h5></a></div>
-        <div class="col-12 col-sm-4 mt-4 mt-sm-0"><a class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Colección</h5></a></div>
-        <div class="col-12 col-sm-4 mt-4 mt-sm-0"><a class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Noticia</h5></a></div>
+        <div class="col-12 col-sm-4"><a href="addArticulo.php" class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Artículo</h5></a></div>
+        <div class="col-12 col-sm-4 mt-4 mt-sm-0"><a href="addColeccion.php" class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Colección</h5></a></div>
+        <div class="col-12 col-sm-4 mt-4 mt-sm-0"><a href="addNoticia.php" class="btn botonAñadir"><i class="bi bi-plus-circle-fill d-block"></i><h5>Noticia</h5></a></div>
       </div>
 
     </div>
@@ -91,14 +92,16 @@ $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
             <div class="row d-flex justify-content-center g-4 m-0 p-0">
               <?php foreach($colecciones as $coleccion) { ?>
                 <div class="col-12 col-sm-6 col-xl-4 p-0 m-0">
-                  <div class="coleccionCardDis" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
-                    <div class="textoColDis">
-                      <h4>Colección: "<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
+                  <a href="coleccion.php?id=<?= htmlspecialchars($coleccion['id']) ?>">
+                    <div class="coleccionCardDis" style="background-image: url('./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>'); background-position: center; background-size: cover;">
+                      <div class="textoColDis">
+                        <h4>"<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                   <div class="d-flex justify-content-evenly">
-                    <a href="" onclick ="borrado()" class="btn botonEditar"><p>Editar</p></a>
-                    <a href="" onclick ="borrado()" class="btn botonEliminar"><p>Eliminar</p></a>
+                    <a class="btn botonEditar" href="updateColeccion.php?id=<?= htmlspecialchars($coleccion['id']) ?>"><p>Editar</p></a>
+                    <a class="btn botonEliminar"><p>Eliminar</p></a>
                   </div>
                 </div>
               <?php } ?>
@@ -117,13 +120,13 @@ $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
             <div class="container-fluid">
               <div class="row my-5">
                 <?php foreach($articulos as $articulo) { ?>
-                  <div class="columnaItemAd col-6 col-lg-4 col-xl-3 mx-auto">
+                  <div class="columnaItemAd col-6 col-lg-4 col-xl-3 mx-auto d-flex flex-column align-items-center justify-content-center">
                     <div class="contenedorImagenItem">
-                      <img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt="">
+                      <a href="articulo.php?id=<?= htmlspecialchars($articulo['id']) ?>"><img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt=""></a>
                     </div>
                     <p><?= htmlspecialchars($articulo['nombre_art']) ?></p>
                     <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                      <a class="btn botonEditar"><p>Editar</p></a>
+                      <a class="btn botonEditar" href="updateArticulo.php?id=<?= htmlspecialchars($articulo['id']) ?>"><p>Editar</p></a>
                       <a class="btn botonEliminar"><p>Eliminar</p></a>
                     </div>
                   </div>
@@ -146,6 +149,7 @@ $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
               <div class="row pb-3">
                 <?php foreach($noticias as $noticia): ?>
                   <div class="col-12 col-md-6 p-0 mx-auto">
+                    <a href="noticia.php?id=<?= htmlspecialchars($noticia['id']) ?>">
                       <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
                           <div class="textoNov">
                               <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
@@ -155,8 +159,9 @@ $colecciones = $stmtColecciones->fetchAll(PDO::FETCH_ASSOC);
                                 ?></p>
                           </div>
                       </div>
+                    </a>
                       <div class="d-flex flex-column flex-md-row justify-content-evenly w-100">
-                          <a class="btn botonEditar"><p>Editar</p></a>
+                          <a class="btn botonEditar" href="updateNoticia.php?id=<?= htmlspecialchars($noticia['id']) ?>"><p>Editar</p></a>
                           <a class="btn botonEliminar"><p>Eliminar</p></a>
                       </div>
                   </div>

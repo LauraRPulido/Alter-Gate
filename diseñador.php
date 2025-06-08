@@ -95,7 +95,7 @@ if ($id > 0) {
                     <a href="coleccion.php?id=<?= $coleccion['id'] ?>" class="text-decoration-none">
                         <div class="coleccionCardDis" style="background-image: url(./img/colecciones/<?= htmlspecialchars($coleccion['imagen']) ?>); background-position: center; background-size: cover;">
                             <div class="textoColDis">
-                                <h4>Colección: "<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
+                                <h4>"<?= htmlspecialchars($coleccion['nombre_coleccion']) ?>"</h4>
                             </div>
                         </div>
                     </a>
@@ -116,7 +116,7 @@ if ($id > 0) {
             <div class="container-fluid">
             <div class="row my-5">
                 <?php foreach($articulos as $articulo) { ?>
-                <div class="col-6 col-lg-4 col-xl-3 columnaItem mx-auto">
+                <div class="col-6 col-lg-4 col-xl-3 columnaItem mx-auto d-flex flex-column align-items-center justify-content-center text-dark">
                     <a href="./articulo.php?id=<?= htmlspecialchars($articulo['id']) ?>" class="d-block">
                         <div class="contenedorImagenItem">
                             <img src="./img/imgArticulos/<?= htmlspecialchars($articulo['img_art']) ?>" alt="">
@@ -131,30 +131,32 @@ if ($id > 0) {
         </div>
         </div>
         <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-            Noticias
-          </button>
-        </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-          <div class="accordion-body">
-            <div class="container-fluid">
-                <?php foreach($noticias as $noticia): ?>
-                  <div class="row pb-3">
-                      <div class="col-12 col-md-6 p-0 mx-auto ">
-                          <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;" >
-                              <div class="textoNov">
-                                  <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
-                                  <p><?php
-                                    $contenido = $noticia['contenido'] ?? '';
-                                    echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
-                                    ?></p>
-                              </div>
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+              Noticias
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+              <div class="container-fluid">
+                <div class="row pb-3">
+                  <?php foreach($noticias as $noticia): ?>
+                    <div class="col-12 col-md-6 p-0 mx-auto">
+                      <a href="noticia.php?id=<?= htmlspecialchars($noticia['id']) ?>">
+                        <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
+                          <div class="textoNov">
+                            <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
+                            <p><?php
+                              $contenido = $noticia['contenido'] ?? '';
+                              echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
+                            ?></p>
                           </div>
-
-                      </div>
-                  </div>
-                <?php endforeach; ?>
+                        </div>
+                      </a>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+              </div>
             </div>
           </div>
         </div>
