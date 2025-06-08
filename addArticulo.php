@@ -14,10 +14,17 @@ require_once("./conexion.php");
 // Obtener datos del usuario logueado
 $id_user = $_SESSION['id_usuario'];
 
+// Obtener estilos para el selector
+$estilos = [];
+$stmtEstilos = $gbd->prepare("SELECT id, nombre_estilo, icono FROM estilos_tb ORDER BY nombre_estilo ASC");
+$stmtEstilos->execute();
+$estilos = $stmtEstilos->fetchAll(PDO::FETCH_ASSOC);
+
 if($_POST){
     $nombre_art = $_POST['nombre_art'] ?? '';
     $descripcion_art = $_POST['descripcion_art'] ?? '';
     $enlace_art = $_POST['enlace_art'] ?? '';
+    $id_estilo = $_POST['id_estilo'] ?? null;
     $img_art = '';
 
     // Manejo de imagen
@@ -29,8 +36,8 @@ if($_POST){
     }
 
     // Insertar artículo
-    $stmt = $gbd->prepare("INSERT INTO articulos_tb (nombre_art, descripcion_art, enlace_art, img_art, id_user) VALUES (?, ?, ?, ?, ?)");
-    $ok = $stmt->execute([$nombre_art, $descripcion_art, $enlace_art, $img_art, $id_user]);
+    $stmt = $gbd->prepare("INSERT INTO articulos_tb (nombre_art, descripcion_art, enlace_art, img_art, id_user, id_estilo) VALUES (?, ?, ?, ?, ?, ?)");
+    $ok = $stmt->execute([$nombre_art, $descripcion_art, $enlace_art, $img_art, $id_user, $id_estilo]);
     if($ok){
         header("Location:admin.php");
         exit;
@@ -50,6 +57,17 @@ if($_POST){
             <div class="mb-3">
                 <label for="descripcion_art" class="form-label">Descripción</label>
                 <textarea name="descripcion_art" id="descripcion_art" class="form-control" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="id_estilo" class="form-label">Estilo</label>
+                <select name="id_estilo" id="id_estilo" class="form-control" required>
+                    <option value="" disabled selected>Selecciona un estilo</option>
+                    <?php foreach($estilos as $estilo): ?>
+                        <option value="<?= htmlspecialchars($estilo['id']) ?>">
+                            <?= htmlspecialchars($estilo['nombre_estilo']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="enlace_art" class="form-label">Enlace (opcional)</label>
