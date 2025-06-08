@@ -10,12 +10,12 @@ if ($estilo > 0) {
     $stmt = $gbd->prepare("SELECT nombre_estilo FROM estilos_tb WHERE id = ?");
     $stmt->execute([$estilo]);
     $nombreEstilo = $stmt->fetchColumn();
-    $consulta = "SELECT * FROM articulos_tb WHERE id_estilo = ?";
+    $consulta = "SELECT * FROM articulos_tb WHERE id_estilo = ? ORDER BY nombre_art ASC";
     $sentencia = $gbd->prepare($consulta);
     $sentencia->execute([$estilo]);
     $resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 } else {
-    $consulta = "SELECT * FROM articulos_tb";
+    $consulta = "SELECT * FROM articulos_tb ORDER BY nombre_art ASC";
     $sentencia = $gbd->query($consulta);
     $resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -47,10 +47,9 @@ if ($estilo > 0) {
             <div class="row mt-5">
                 <?php foreach($resultados as $fila){ ?>
                     
-                    <div class="col-12 col-lg-4 col-xl-3 columnaItem jus
-                        tify-content-center d-flex flex-column align-items-center ">
-                        <a href="./articulo.php?id=<?=$fila['id']?>">
-                            <div class="contenedorImagenItemArmario ">
+                    <div class="col-12 col-lg-4 col-xl-3 columnaItem justify-content-center d-flex flex-column align-items-center ">
+                        <a class="d-block justify-self-center" href="./articulo.php?id=<?=$fila['id']?>">
+                            <div class="contenedorImagenItemArmario">
                                 <img src="./img/imgArticulos/<?= $fila['img_art']?>" alt="">
                             </div>
                             <p class="text-dark"><?= $fila['nombre_art']?></p>

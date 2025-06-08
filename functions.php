@@ -7,7 +7,7 @@ function registrar($gbd, $user, $pass) {
         return "El usuario ya existe.";
     }
     $contra_protegida = password_hash($pass, PASSWORD_DEFAULT);
-    $imgUser = 'iconDefault.jpg';
+    $imgUser = 'iconDefault.png';
     $sentencia = $gbd->prepare("INSERT INTO users_tb (username, password, imgUser) VALUES (?, ?, ?)");
     if ($sentencia->execute([$user, $contra_protegida, $imgUser])) {
         return "Registro correcto";
@@ -29,5 +29,13 @@ function login($gbd, $user, $pass, $rec) {
         exit;
     }
     return "El usuario o la contraseña no son correctos";
+}
+
+function obtenerImgUser($id) {
+    require('./conexion.php');
+    $stmt = $gbd->prepare("SELECT imgUser FROM users_tb WHERE id = ?");
+    $stmt->execute([$id]);
+    $imgUser = $stmt->fetchColumn();
+    return $imgUser ?: null;
 }
 ?>

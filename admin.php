@@ -33,15 +33,18 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
           <div class="container-fluid bannerDis px-5 py-2">
             <div class="row py-3 d-flex align-items-center flex-column flex-lg-column flex-xl-row justify-content-xl-between">
               <div class="col-auto">
-                <a href="">
+                
                   <div class="contenedorPerfil">
-                      <img src="./img/<?= htmlspecialchars($user['imgUser'] ?? 'diseñadorEmilio.jpg') ?>" alt="<?= htmlspecialchars($user['username'] ?? '') ?>" class="imagenCirculo">
+                    <a href="diseñador.php?id=<?= htmlspecialchars($user['id']) ?>">
+                      <img src="./img/<?= htmlspecialchars($user['imgUser']) ?>" alt="<?= htmlspecialchars($user['username'] ?? '') ?>" class="imagenCirculo">
+                    </a>    
                   </div>
-                </a>    
               </div>
               <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
-                  <h4><?= htmlspecialchars($user['username'] ?? '') ?></h4>
-                  <p><?= htmlspecialchars($user['bio'] ?? 'Sin biografía.') ?></p>
+                  <h4 class="text-white display-5 display-md-4 display-lg-3 fw-bold mb-2" style="line-height:1.1;"><?= htmlspecialchars($user['username'] ?? '') ?></h4>
+                  <p class="text-white fs-4 fs-md-3 fs-lg-2 fw-light mb-3" style="line-height:1.3;">
+                    <?= htmlspecialchars($user['bio'] ?? 'Sin biografía.') ?>
+                  </p>
                   <a class="text-light f-small fw-light" href="mailto:<?= htmlspecialchars($user['enlace'] ?? '') ?>"><?= htmlspecialchars($user['enlace'] ?? '') ?></a>
                   <div class="d-flex flex-column flex-md-row justify-content-center justify-content-xl-start  w-100">
                       <a class="btn botonEditarPerf" href="updateUser.php"><p>Editar Perfil</p></a>
@@ -50,8 +53,8 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
               </div>
               <div class="d-flex col-12 col-xl-auto text-center text-xl-start justify-content-center gap-3">
                   <div class="contContadores">
-                      <p>Me gusta</p>
-                      <h5><?= htmlspecialchars($user['likes'] ?? '0') ?><span></h5>
+                      <p>Noticias</p>
+                      <h5><?= count($noticias) ?></h5>
                   </div>
                   <div class="contContadores">
                       <p>Artículos</p>
@@ -86,11 +89,11 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
     
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#mainAccordion-collapseOne" aria-expanded="true" aria-controls="mainAccordion-collapseOne">
             Colecciones
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+        <div id="mainAccordion-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#mainAccordion">
           <div class="accordion-body container-fluid">
             <div class="row d-flex justify-content-center g-4 m-0 p-0">
               <?php foreach($colecciones as $coleccion) { ?>
@@ -114,11 +117,11 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainAccordion-collapseTwo" aria-expanded="false" aria-controls="mainAccordion-collapseTwo">
             Artículos
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+        <div id="mainAccordion-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
           <div class="accordion-body">
             <div class="container-fluid">
               <div class="row my-5">
@@ -142,11 +145,11 @@ $user = $stmtUser->fetch(PDO::FETCH_ASSOC);
 
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mainAccordion-collapseThree" aria-expanded="false" aria-controls="mainAccordion-collapseThree">
             Noticias
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+        <div id="mainAccordion-collapseThree" class="accordion-collapse collapse" data-bs-parent="#mainAccordion">
           <div class="accordion-body">
             <div class="container-fluid">
               <div class="row pb-3">

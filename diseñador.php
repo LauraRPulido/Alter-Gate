@@ -40,8 +40,12 @@ if ($id > 0) {
                             </div>
 
                             <div class="col  col-xl-6 my-3 perfilDis text-center text-lg-center text-xl-start">
-                                <h4><?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?></h4>
-                                <p><?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?></p>
+                                <h4 class="text-white display-5 display-md-4 display-lg-3 fw-bold mb-2" style="line-height:1.1;">
+  <?= htmlspecialchars($diseñador['username'] ?? 'Desconocido') ?>
+</h4>
+<p class="text-white fs-4 fs-md-3 fs-lg-2 fw-light mb-3" style="line-height:1.3;">
+  <?= htmlspecialchars($diseñador['bio'] ?? 'Sin descripción.') ?>
+</p>
                                 <?php if (!empty($diseñador['enlace'])): ?>
                                     <a href="<?= htmlspecialchars($diseñador['enlace']) ?>" target="_blank" class="perfilLink my-2">Ir al sitio del diseñador</a>
                                 <?php endif; ?>
@@ -49,8 +53,8 @@ if ($id > 0) {
 
                             <div class="d-flex col-12 col-xl-auto text-center text-xl-start justify-content-center gap-3">
                                 <div class="contContadores">
-                                    <p>Me gusta</p>
-                                    <h5><?= htmlspecialchars($diseñador['likes'] ?? '0') ?><span></span></h5>
+                                    <p>Noticias</p>
+                                    <h5><?= count($noticias) ?></h5>
                                     
 
                                 </div>
@@ -80,14 +84,14 @@ if ($id > 0) {
 
     <section id="desplegable">
      
-    <div class="accordion px-3 px-xl-5 my-5" id="">
+    <div class="accordion px-3 px-xl-5 my-5" id="acordeonDisenador">
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#acordeonDisenador-collapseOne" aria-expanded="true" aria-controls="acordeonDisenador-collapseOne">
             Colecciones
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+        <div id="acordeonDisenador-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#acordeonDisenador">
           <div class="accordion-body container-fluid">
             <div class="row d-flex justify-content-center g-4 m-0 p-0 "> 
                 <?php foreach($colecciones as $coleccion) { ?>
@@ -107,11 +111,11 @@ if ($id > 0) {
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acordeonDisenador-collapseTwo" aria-expanded="false" aria-controls="acordeonDisenador-collapseTwo">
             Artículos
           </button>
         </h2>
-        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+        <div id="acordeonDisenador-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#acordeonDisenador">
           <div class="accordion-body">
             <div class="container-fluid">
             <div class="row my-5">
@@ -129,33 +133,32 @@ if ($id > 0) {
             </div>
           </div>
         </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-              Noticias
-            </button>
-          </h2>
-          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
-            <div class="accordion-body">
-              <div class="container-fluid">
-                <div class="row pb-3">
-                  <?php foreach($noticias as $noticia): ?>
-                    <div class="col-12 col-md-6 p-0 mx-auto">
-                      <a href="noticia.php?id=<?= htmlspecialchars($noticia['id']) ?>">
-                        <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
-                          <div class="textoNov">
-                            <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
-                            <p><?php
-                              $contenido = $noticia['contenido'] ?? '';
-                              echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
-                            ?></p>
-                          </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#acordeonDisenador-collapseThree" aria-expanded="false" aria-controls="acordeonDisenador-collapseThree">
+            Noticias
+          </button>
+        </h2>
+        <div id="acordeonDisenador-collapseThree" class="accordion-collapse collapse" data-bs-parent="#acordeonDisenador">
+          <div class="accordion-body">
+            <div class="container-fluid">
+              <div class="row pb-3">
+                <?php foreach($noticias as $noticia): ?>
+                  <div class="col-12 col-md-6 p-0 mx-auto">
+                    <a href="noticia.php?id=<?= htmlspecialchars($noticia['id']) ?>">
+                      <div class="noticiaAd" style="background: url('./img/noticias/<?= htmlspecialchars($noticia['imagen']) ?>') center center /cover;">
+                        <div class="textoNov">
+                          <h4><?= htmlspecialchars($noticia['titulo']) ?></h4>
+                          <p><?php
+                            $contenido = $noticia['contenido'] ?? '';
+                            echo mb_substr($contenido, 0, 100) . (mb_strlen($contenido) > 200 ? '...' : '');
+                          ?></p>
                         </div>
-                      </a>
-                    </div>
-                  <?php endforeach; ?>
-                </div>
+                      </div>
+                    </a>
+                  </div>
+                <?php endforeach; ?>
               </div>
             </div>
           </div>

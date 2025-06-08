@@ -4,13 +4,15 @@ if(isset ($_GET['id'])){
     require_once("./conexion.php");
 
     $id = $_GET['id'];
-    $consulta = "SELECT * FROM colecciones_tb, users_tb WHERE colecciones_tb.id_user = users_tb.id AND colecciones_tb.id = ?";
+    $consulta = "SELECT colecciones_tb.*, users_tb.*, estilos_tb.icono AS icono_estilo FROM colecciones_tb 
+        JOIN users_tb ON colecciones_tb.id_user = users_tb.id 
+        JOIN estilos_tb ON colecciones_tb.id_estilo = estilos_tb.id
+        WHERE colecciones_tb.id = ?";
     $sentencia = $gbd->prepare($consulta);
     $sentencia->execute([$id]);
-    
     $producto = $sentencia->fetch(PDO::FETCH_ASSOC);
 
-    // Obtener artículos de la colección
+   //ARTÍCULOS-COLECCIONES
     $articulos = [];
     $stmtArticulos = $gbd->prepare(
         "SELECT articulos_tb.* 
@@ -32,30 +34,29 @@ if(isset ($_GET['id'])){
 
 
     <div id="diseñador" class="container-fluid px-4 px-lg-5">
-            <div class="row d-flex align-items-center justify-content-center justify-content-md-between mt-5">
-                <div class="col-12 col-md-6 col-xl-4 mb-4 mb-md-4 ms-0 ms-lg-4">
-                    <h1 class=""><?= htmlspecialchars($producto['nombre_coleccion']) ?></h1>
-                </div>
-                <div class="col-9 col-md-5 col-xl-4 tarjetaDiseñador">
-                    
-                    <div class="imgContenedor">
-                        <img src="./img/<?= htmlspecialchars($producto['imgUser']) ?>" alt="<?= htmlspecialchars($producto['username']) ?>" class="img-fluid imagenCirculo">
-
-                    </div>
-
-                     <div class="col col-lg-auto col-xl my-3 my-lg-3 px-3 text-start ">
-                            <h4><?= htmlspecialchars($producto['username']) ?></h4>
-                            
-                        <div class="col-12">
-                            
-                                <a href="diseñador.php?id=<?= $producto['id_user'] ?>" class="botonNov">Ver Diseñador</a>
-                                
-                        </div>
-                    </div>
-                        
-
+        <div class="row d-flex align-items-center justify-content-center justify-content-md-between mt-5">
+            <div class="col-12 col-md-6 col-xl-4 mb-4 mb-md-4 ms-0 ms-lg-4">
+                <h1 class="mb-2"><?= htmlspecialchars($producto['nombre_coleccion']) ?></h1>
+                <div class="mb-2">
+                    <p><?= htmlspecialchars($producto['descripcion']) ?></p>
                 </div>
             </div>
+            <div class="col-9 col-md-5 col-xl-4 tarjetaDiseñador d-flex align-items-center">
+                <div class="imgContenedor me-3">
+                    <img src="./img/<?= htmlspecialchars($producto['imgUser']) ?>" alt="<?= htmlspecialchars($producto['username']) ?>" class="img-fluid imagenCirculo">
+                </div>
+                
+                <div class="col col-lg-auto col-xl my-3 my-lg-3 px-3 text-start ">
+                    <h4><?= htmlspecialchars($producto['username']) ?></h4>
+                    <div class="col-12">
+                        <a href="diseñador.php?id=<?= $producto['id_user'] ?>" class="botonNov">Ver Diseñador</a>
+                    </div>
+                </div>
+                <div class="imgContenedor me-3">
+                    <img src="./img/estilos/<?= htmlspecialchars($producto['icono_estilo']) ?>" alt="Icono Estilo" class="img-fluid imagenCirculo">
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="container-fluid">

@@ -1,7 +1,7 @@
 <?php
 
 require_once("./conexion.php");
-// Obtener todos los usuarios
+
 $usuarios = $gbd->query("SELECT * FROM users_tb")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <?php include_once("./header.php");?>
@@ -11,15 +11,15 @@ $usuarios = $gbd->query("SELECT * FROM users_tb")->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <div class="row my-4">
         <?php foreach($usuarios as $usuario){
-            // Para cada usuario, obtener hasta 2 artículos
+            
             $stmt = $gbd->prepare("SELECT * FROM articulos_tb WHERE id_user = ? LIMIT 2");
             $stmt->execute([$usuario['id']]);
             $articulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
         
-        <div class="col-12 col-xl-6 d-flex justify-self-center">
+        <div class="col-12 col-xl-6 d-flex justify-self-center mb-5">
             <div class="container contenedorDis">
-                <div class="row py-3 d-flex align-items-center flex-column flex-md-row flex-lg-column flex-xl-row">
+                <div class="row py-3 d-flex align-items-center flex-column flex-md-row flex-lg-column flex-xl-row ">
                     <div class="col-auto">
                         <div class="contenedorPerfil">
                             <a href="./diseñador.php?id=<?= htmlspecialchars($usuario['id']) ?>">

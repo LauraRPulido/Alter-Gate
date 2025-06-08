@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,7 @@
 
             <div class="col text-center">
                 <a class="navbar-brand" href="./index.php">
-                    <img class="" src="./img/logoAlterGate3" alt="">
+                    <img class="" src="./img/logo altergate.png" alt="">
                 </a>
             </div>
         </div>
@@ -45,10 +50,24 @@
                                 </button>
 
                                 <div class="col-auto">
-                                    
-                                    <a href="">
+                                    <?php
+                                    require_once('./functions.php');
+                                    $isLogged = false;
+                                    $imgUser = './img/iconDefault.png';
+                                    $userHref = 'login.php';
+                                    if (isset($_SESSION['id']) || isset($_COOKIE['id'])) {
+                                        $isLogged = true;
+                                        $userId = $_SESSION['id'] ?? $_COOKIE['id'];
+                                        $imgUserName = obtenerImgUser($userId);
+                                        if ($imgUserName) {
+                                            $imgUser = './img/' . ltrim($imgUserName, './');
+                                        }
+                                        $userHref = 'admin.php';
+                                    }
+                                    ?>
+                                    <a href="<?= $userHref ?>">
                                         <div class="rounded-circle">
-                                           <img class="rounded-circle iconoLogin" src="./img/diseñadorDavina-min.jpg" alt="">
+                                           <img class="rounded-circle iconoLogin" src="<?= htmlspecialchars($imgUser) ?>" alt="Usuario">
                                         </div>
                                     </a>
 
@@ -60,7 +79,7 @@
                                         <a href="./armario.php">Menú</a>
                                         <a href="./noticias.php">Noticias</a>
                                         <a href="./colecciones.php">Colecciones</a>
-                                        <a href="./diseñadores.html">Diseñadores</a>
+                                        <a href="./diseñadores.php">Diseñadores</a>
                 
                                     </div> 
                     
@@ -79,46 +98,27 @@
         </div>
 
         <!-- Menú escritorio -->
-        <div class="row d-flex align-items-center justify-content-evenly">
-   
-            <nav class="col navbar navbar-expand-lg d-none d-lg-flex">
-                
+        <div class="row d-none d-lg-grid align-items-center" style="display: grid; grid-template-columns: 1fr auto 1fr; justify-items: center; align-items: center;">
+            <nav class="navbar navbar-expand-lg justify-content-start" style="grid-column: 1;">
                 <div class="container-fluid m-0">
-        
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navResponsive" aria-controls="navResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    
-                    <div class="collapse navbar-collapse" id="navResponsive">
+                    <div class="collapse navbar-collapse show" id="navResponsiveLeft">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
-        
-                        <a href="armario.php">Menú</a>
-                        <a href="noticias.php">Noticias</a>
-                        <a href="colecciones.php">Colecciones</a>
-                        <a href="diseñadores.php">Diseñadores</a>
-        
-                        </div> 
-            
+                            <a href="armario.php">Menú</a>
+                            <a href="noticias.php">Noticias</a>
+                            <a href="colecciones.php">Colecciones</a>
+                            <a href="diseñadores.php">Diseñadores</a>
+                        </div>
                     </div>
-        
                 </div>
-                
             </nav>
-
-            <div class="col d-flex d-none d-lg-flex m-auto">
-
-                <a class="navbar-brand" href="#">
-                    <img class="img-fluid" src="./img/logo altergate.png" alt="">
+            <div style="grid-column: 2; justify-self: center;">
+                <a class="navbar-brand" href="./index.php">
+                    <img class="img-fluid logo-header" src="./img/logo altergate.png" alt="Logo AlterGate">
                 </a>
-        
             </div>
-
-            <nav class="col-2 navbar navbar-expand-lg d-none d-lg-flex">
-                
+            <nav class="navbar navbar-expand-lg justify-content-end" style="grid-column: 3;">
                 <div class="container-fluid">
-        
-                    
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navLogin">
+                    <div class="collapse navbar-collapse show d-flex justify-content-end" id="navLogin">
                         <div class="navbar-nav navbar-escritorio py-2 px-1">
                             <?php
                             $isLogged = false;
@@ -131,14 +131,11 @@
                         </div>
                         <div class="navbar-nav navbar-escritorio py-2 ms-2 px-1">
                             <a href="registro.php">Registro</a>
-                        </div> 
-            
+                        </div>
                     </div>
-        
                 </div>
-                
             </nav>
-
         </div>
+        <!-- Fin menú escritorio -->
 
     </header>
